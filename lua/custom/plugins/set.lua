@@ -6,11 +6,11 @@ vim.opt.scrolloff = 8
 vim.opt.autowriteall = true
 
 -- Run formatter on save
-vim.cmd [[
-  augroup FormatAutogroup
-    autocmd!
-    autocmd BufWritePost * FormatWrite
-  augroup END
-]]
+vim.api.nvim_create_autocmd('BufWritePost', {
+	group = vim.api.nvim_create_augroup('FormatAutogroup', { clear = true }),
+	callback = function()
+		vim.api.nvim_cmd({ cmd = 'FormatWrite' }, {})
+	end,
+})
 
 return {}
