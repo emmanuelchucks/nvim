@@ -11,9 +11,12 @@ vim.keymap.set('n', ']b', '<cmd>bnext<cr>', { desc = 'Go to next buffer' })
 
 -- Auto	format on save
 vim.api.nvim_create_autocmd({ 'FocusLost', 'BufWritePost' }, {
-	group = vim.api.nvim_create_augroup('FormatOnSaveAutoGroup', {}),
+	group = vim.api.nvim_create_augroup('FormatOnSaveAutoGroup', { clear = true }),
 	callback = function()
-		vim.api.nvim_cmd({ cmd = 'FormatWrite' }, {})
+		-- if file is not empty
+		if vim.fn.getline(1) ~= '' then
+			vim.cmd 'FormatWrite'
+		end
 	end,
 })
 
