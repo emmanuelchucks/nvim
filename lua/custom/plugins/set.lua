@@ -3,7 +3,7 @@
 
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
-vim.opt.autowriteall = true
+vim.opt.autowrite = true
 
 -- Switch buffers
 vim.keymap.set('n', '[b', '<cmd>bprevious<cr>', { desc = 'Go to previous buffer' })
