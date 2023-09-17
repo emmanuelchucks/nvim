@@ -2,7 +2,6 @@
 --
 
 return {
-<<<<<<< HEAD
 	require('lspconfig').tailwindCSS.setup {
 		settings = {
 			tailwindCSS = {
@@ -15,6 +14,4 @@ return {
 			},
 		},
 	},
-=======
->>>>>>> 37fccc6 (update with more custom plugins)
 }

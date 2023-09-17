@@ -2,7 +2,6 @@
 --
 
 return {
-<<<<<<< HEAD
 	'zbirenbaum/copilot.lua',
 	config = function()
 		require('copilot').setup {
@@ -11,7 +10,4 @@ return {
 			},
 		}
 	end,
-=======
-	'github/copilot.vim',
->>>>>>> 37fccc6 (update with more custom plugins)
 }
