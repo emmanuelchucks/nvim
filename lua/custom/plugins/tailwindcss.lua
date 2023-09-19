@@ -1,0 +1,5 @@
+-- tailwindcss.lua
+--
+
+return {
+}
