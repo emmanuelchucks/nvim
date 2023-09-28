@@ -2,16 +2,16 @@
 --
 
 return {
-	require('lspconfig').tailwindCSS.setup {
-		settings = {
-			tailwindCSS = {
-				experimental = {
-					classRegex = {
-						{ 'cva\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
-						{ 'cx\\(([^)]*)\\)',  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-					},
-				},
-			},
-		},
-	},
+  require('lspconfig').tailwindCSS.setup {
+    settings = {
+      tailwindCSS = {
+        experimental = {
+          classRegex = {
+            { 'cva\\(([^)]*)\\)', '["\'`]([^"\'`]*).*?["\'`]' },
+            { 'cx\\(([^)]*)\\)',  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          },
+        },
+      },
+    },
+  },
 }
