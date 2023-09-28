@@ -10,6 +10,7 @@ return {
 				['*'] = { require('formatter.filetypes.typescript').prettierd },
 			},
 		}
+<<<<<<< HEAD
 
 		-- Auto	format on save
 		vim.api.nvim_create_autocmd('BufWritePost', {
@@ -21,5 +22,7 @@ return {
 				end
 			end,
 		})
+=======
+>>>>>>> 37fccc6 (update with more custom plugins)
 	end,
 }
