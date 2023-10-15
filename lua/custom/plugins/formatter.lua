@@ -7,7 +7,7 @@ return {
 		require('formatter').setup {
 			filetype = {
 				lua = { require('formatter.filetypes.lua').stylua },
-				['*'] = { require('formatter.filetypes.typescript').prettierd },
+				['*'] = { require('formatter.filetypes.any').prettierd },
 			},
 		}
 
@@ -17,7 +17,7 @@ return {
 			callback = function()
 				-- if file is not empty
 				if vim.fn.getline(1) ~= '' then
-					vim.cmd 'FormatWrite'
+					vim.cmd 'FormatWriteLock'
 				end
 			end,
 		})

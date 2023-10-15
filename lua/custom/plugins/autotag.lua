@@ -1,4 +1,4 @@
--- autopairs.lua
+-- autotag.lua
 --
 
 return {
