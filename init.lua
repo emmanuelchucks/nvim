@@ -124,11 +124,11 @@ require('lazy').setup({
 				changedelete = { text = '~' },
 			},
 			on_attach = function(bufnr)
-				vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
-				vim.keymap.set('n', '<leader>hr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = 'Reset git hunk' })
+				vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Git preview hunk' })
+				vim.keymap.set('n', '<leader>hr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = 'Git reset hunk' })
 				vim.keymap.set('v', '<leader>hr', function()
 					require('gitsigns').reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-				end, { buffer = bufnr, desc = 'Reset git hunk' })
+				end, { buffer = bufnr, desc = 'Git reset hunk' })
 				vim.keymap.set('n', '<leader>hb', function()
 					require('gitsigns').blame_line { full = true }
 				end, { buffer = bufnr, desc = 'Git blame current line' })
