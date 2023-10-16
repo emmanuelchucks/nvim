@@ -129,6 +129,7 @@ require('lazy').setup({
 				vim.keymap.set('v', '<leader>hr', function()
 					require('gitsigns').reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
 				end, { buffer = bufnr, desc = 'Git reset hunk' })
+				vim.keymap.set('n', '<leader>hR', require('gitsigns').reset_buffer, { buffer = bufnr, desc = 'Git reset buffer' })
 				vim.keymap.set('n', '<leader>hb', function()
 					require('gitsigns').blame_line { full = true }
 				end, { buffer = bufnr, desc = 'Git blame current line' })
