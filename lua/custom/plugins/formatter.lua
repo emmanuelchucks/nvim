@@ -7,7 +7,7 @@ return {
 		require('formatter').setup {
 			filetype = {
 				lua = { require('formatter.filetypes.lua').stylua },
-				['*'] = { require('formatter.filetypes.any').prettierd },
+				['*'] = { require('formatter.filetypes.typescript').prettierd },
 			},
 		}
 
