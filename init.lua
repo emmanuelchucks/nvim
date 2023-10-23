@@ -483,6 +483,7 @@ local servers = {
 	-- pyright = {},
 	-- rust_analyzer = {},
 	-- html = { filetypes = { 'html', 'twig', 'hbs'} },
+	astro = {},
 	tsserver = {},
 
 	lua_ls = {
@@ -502,8 +503,6 @@ local servers = {
 			},
 		},
 	},
-
-	astro = {},
 
 	jsonls = {
 		json = {
