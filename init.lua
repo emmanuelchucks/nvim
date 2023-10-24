@@ -133,6 +133,11 @@ require('lazy').setup({
 				vim.keymap.set('n', '<leader>hb', function()
 					require('gitsigns').blame_line { full = true }
 				end, { buffer = bufnr, desc = 'Git blame current line' })
+				vim.keymap.set('n', '<leader>hs', require('gitsigns').stage_hunk, { buffer = bufnr, desc = 'Git stage hunk' })
+				vim.keymap.set('v', '<leader>hs', function()
+					require('gitsigns').stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+				end, { buffer = bufnr, desc = 'Git stage hunk' })
+				vim.keymap.set('n', '<leader>hu', require('gitsigns').undo_stage_hunk, { buffer = bufnr, desc = 'Git undo stage hunk' })
 
 				-- don't override the built-in and fugitive keymaps
 				local gs = package.loaded.gitsigns
