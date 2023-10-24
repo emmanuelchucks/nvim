@@ -20,7 +20,10 @@ return {
 		vim.api.nvim_create_autocmd('BufWritePre', {
 			group = vim.api.nvim_create_augroup('FormatOnSaveAutoGroup', { clear = true }),
 			callback = function()
-				require('conform').format()
+				--   if buffer is not empty
+				if vim.fn.getline(1) ~= '' then
+					require('conform').format()
+				end
 			end,
 		})
 	end,
