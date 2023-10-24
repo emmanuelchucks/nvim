@@ -11,6 +11,7 @@ return {
 				typescript = { 'eslint_d', 'prettierd' },
 				typescriptreact = { 'eslint_d', 'prettierd' },
 				astro = { 'eslint_d', 'prettierd' },
+				['*'] = { 'prettierd' },
 				lua = { 'stylua' },
 			},
 		}
