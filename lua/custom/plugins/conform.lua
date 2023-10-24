@@ -16,6 +16,17 @@ return {
 				markdown = { 'prettierd' },
 				lua = { 'stylua' },
 			},
+
+			formatters = {
+				eslint_d = {
+					condition = function(ctx)
+						-- only if there is an eslint config file (e.g. .eslintrc)
+						local possible_configs = { '.eslintrc', '.eslintrc.js', '.eslintrc.json', '.eslintrc.yml' }
+						local config = require('conform.util').root_file(possible_configs)(ctx)
+						return config ~= nil
+					end,
+				},
+			},
 		}
 
 		-- Auto	format on save
