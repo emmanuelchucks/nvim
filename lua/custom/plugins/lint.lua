@@ -16,7 +16,10 @@ return {
 		vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave', 'TextChanged' }, {
 			group = vim.api.nvim_create_augroup('LintOnSaveAutoGroup', { clear = true }),
 			callback = function()
+				--   if buffer is not empty
+				if vim.fn.getline(1) ~= '' then
 					require('lint').try_lint()
+				end
 			end,
 		})
 	end,
