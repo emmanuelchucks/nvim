@@ -2,6 +2,7 @@
 --
 
 local servers = {
+	astro = {},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
@@ -12,6 +13,21 @@ local servers = {
 		json = {
 			schemas = require("schemastore").json.schemas(),
 			validate = { enable = true },
+		},
+	},
+	tsserver = {
+		completions = {
+			completeFunctionCalls = true,
+		},
+	},
+	tailwindcss = {
+		tailwindCSS = {
+			experimental = {
+				classRegex = {
+					{ "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+					{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+				},
+			},
 		},
 	},
 }
