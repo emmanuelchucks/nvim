@@ -3,7 +3,7 @@
 
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
+	event = { "BufEnter" },
 	config = function()
 		vim.defer_fn(function()
 			require("nvim-treesitter.configs").setup({
