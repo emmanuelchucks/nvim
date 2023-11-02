@@ -7,8 +7,17 @@ return {
 	config = function()
 		vim.defer_fn(function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "http", "json", "jsonc", "lua", "vim", "vimdoc", "query" },
-				auto_install = true,
+				ensure_installed = {
+					"astro",
+					"http",
+					"json",
+					"jsonc",
+					"lua",
+					"typescript",
+					"tsx",
+					"vim",
+					"vimdoc",
+				},
 				highlight = { enable = true },
 				indent = { enable = true },
 				incremental_selection = {
