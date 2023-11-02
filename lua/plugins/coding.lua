@@ -7,14 +7,12 @@ return {
 		config = function()
 			require("mini.ai").setup()
 			require("mini.bracketed").setup()
-			require("mini.comment").setup()
 			require("mini.move").setup()
 			require("mini.sessions").setup()
 			require("mini.starter").setup()
 			require("mini.surround").setup()
 
 			local toggle_key = "<leader>t"
-
 			require("mini.basics").setup({
 				mappings = {
 					windows = true,
