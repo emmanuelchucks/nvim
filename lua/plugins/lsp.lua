@@ -37,17 +37,9 @@ local on_attach = function(_, bufnr)
 	map(goto_prefix .. "i", builtin.lsp_implementations, "Goto implementation")
 	map(goto_prefix .. "t", builtin.lsp_type_definitions, "Goto type definition")
 
-	local document_prefix = "<leader>d"
-	map(document_prefix .. "s", builtin.lsp_document_symbols, "Document symbols")
-
-	local workspace_prefix = "<leader>w"
-	map(workspace_prefix .. "s", builtin.lsp_dynamic_workspace_symbols, "Workspace symbols")
-
 	require("which-key").register({
 		[code_prefix] = { name = "Code", _ = "which_key_ignore" },
 		[goto_prefix] = { name = "Goto", _ = "which_key_ignore" },
-		[document_prefix] = { name = "Document", _ = "which_key_ignore" },
-		[workspace_prefix] = { name = "Workspace", _ = "which_key_ignore" },
 	})
 end
 
