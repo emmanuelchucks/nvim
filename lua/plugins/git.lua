@@ -1,11 +1,6 @@
 -- git.lua
 --
 
-local prefix = "<leader>h"
-require("which-key").register({
-	[prefix] = { name = "Hunk", _ = "which_key_ignore" },
-})
-
 --  This function gets run when gitsigns connects to a particular buffer.
 local on_attach = function(bufnr)
 	local gitsigns = package.loaded.gitsigns
@@ -26,6 +21,8 @@ local on_attach = function(bufnr)
 		end)
 		return "<Ignore>"
 	end, { expr = true, desc = "Next hunk" })
+
+	local prefix = "<leader>h"
 
 	map("n", "[h", function()
 		if vim.wo.diff then
@@ -62,6 +59,10 @@ local on_attach = function(bufnr)
 
 	-- Text object
 	map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "inner hunk" })
+
+	require("which-key").register({
+		[prefix] = { name = "Hunk", _ = "which_key_ignore" },
+	})
 end
 
 return {
