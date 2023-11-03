@@ -52,7 +52,7 @@ return {
 	},
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		event = { "VeryLazy" },
+		event = { "BufReadPre" },
 		opts = {
 			enable_autocmd = false,
 		},
