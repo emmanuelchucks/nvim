@@ -25,8 +25,8 @@ return {
 		})
 
 		local prefix = "<leader>d"
-		local map = function(keys, func, desc)
-			vim.keymap.set("n", keys, func, { desc = "Debug: " .. desc })
+		local map = function(key, func, desc)
+			vim.keymap.set("n", key, func, { desc = "Debug: " .. desc })
 		end
 
 		-- Basic debugging keymaps
