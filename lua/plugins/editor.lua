@@ -2,13 +2,6 @@
 --
 
 return {
-	-- Git related plugins
-	{
-		"tpope/vim-fugitive",
-		dependencies = { "tpope/vim-rhubarb" },
-		cmd = { "G", "GBrowse" },
-	},
-
 	-- Detect tabstop and shiftwidth automatically
 	{
 		"tpope/vim-sleuth",
@@ -29,22 +22,6 @@ return {
 		"folke/which-key.nvim",
 		event = { "VeryLazy" },
 		opts = {},
-	},
-
-	{
-		-- Adds git related signs to the gutter, as well as utilities for managing changes
-		-- See `:help gitsigns.txt`
-		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
 	},
 
 	{
