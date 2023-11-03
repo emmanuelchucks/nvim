@@ -36,8 +36,8 @@ local servers = {
 local on_attach = function(_, bufnr)
 	local builtin = require("telescope.builtin")
 
-	local map = function(keys, func, desc)
-		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+	local map = function(key, func, desc)
+		vim.keymap.set("n", key, func, { buffer = bufnr, desc = "LSP: " .. desc })
 	end
 
 	-- See `:help K` for why this keymap
