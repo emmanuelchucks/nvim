@@ -50,6 +50,19 @@ return {
 			},
 		},
 	},
+
+	{
+		"folke/todo-comments.nvim",
+		event = { "BufReadPre" },
+		dependencies = { "nvim-lua/plenary.nvim" },
+		keys = {
+			{ "]t", ":lua require('todo-comments').jump_next()<cr>", desc = "Next todo" },
+			{ "[t", ":lua require('todo-comments').jump_prev()<cr>", desc = "Previous todo" },
+			{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find todos" },
+		},
+		opts = {},
+	},
+
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		event = { "BufReadPre" },
