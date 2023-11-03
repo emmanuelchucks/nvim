@@ -26,20 +26,24 @@ return {
 			})
 		end,
 	},
+
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		opts = {},
 	},
+
 	{
 		"windwp/nvim-ts-autotag",
 		event = { "InsertEnter" },
 		opts = {},
 	},
+
 	{
 		"b0o/schemastore.nvim",
 		ft = "json",
 	},
+
 	{
 		"zbirenbaum/copilot.lua",
 		event = { "InsertEnter" },
