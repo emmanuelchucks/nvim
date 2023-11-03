@@ -83,13 +83,14 @@ return {
 		}
 
 		for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
-			require("dap").configurations[language] = {
+			dap.configurations[language] = {
 				{
 					type = "pwa-node",
 					request = "launch",
 					name = "Launch file",
 					program = "${file}",
 					cwd = "${workspaceFolder}",
+					runtimeExecutable = "tsx",
 				},
 				{
 					type = "pwa-node",
