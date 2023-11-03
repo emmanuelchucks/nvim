@@ -11,9 +11,6 @@ return {
 		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
-
-		-- Add language debuggers here
-		"mxsdev/nvim-dap-vscode-js",
 	},
 	config = function()
 		local dap = require("dap")
@@ -72,11 +69,6 @@ return {
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
-
-		-- Install language specific config
-		require("dap-vscode-js").setup({
-			adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
-		})
 
 		dap.adapters = {
 			["pwa-node"] = {
