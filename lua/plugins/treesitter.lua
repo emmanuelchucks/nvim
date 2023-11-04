@@ -4,7 +4,7 @@
 return {
 	-- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufEnter" },
+	event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},

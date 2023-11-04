@@ -100,7 +100,7 @@ return {
 		-- Adds git related signs to the gutter, as well as utilities for managing changes
 		-- See `:help gitsigns.txt`
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			on_attach = on_attach,
 			signs = {

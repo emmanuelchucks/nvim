@@ -82,7 +82,7 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
-		event = { "VeryLazy" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
