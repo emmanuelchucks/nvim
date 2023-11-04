@@ -27,8 +27,6 @@ return {
 			["<leader>f"] = {
 				name = "Find",
 				["/"] = { builtin.live_grep, "Find by grep" },
-				f = { builtin.find_files, "Find files" },
-				g = { builtin.git_files, "Find git files" },
 				b = { builtin.buffers, "Find buffers" },
 				d = { builtin.diagnostics, "Find diagnostics" },
 				h = { builtin.help_tags, "Find help" },
@@ -37,6 +35,18 @@ return {
 				s = { builtin.spell_suggest, "Find spelling" },
 				k = { builtin.keymaps, "Find keymaps" },
 				o = { builtin.oldfiles, "Find recent files" },
+				f = {
+					function()
+						if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
+							builtin.git_files({
+								show_untracked = true,
+							})
+						else
+							builtin.find_files()
+						end
+					end,
+					"Find files",
+				},
 			},
 		})
 	end,
