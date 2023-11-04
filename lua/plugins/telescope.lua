@@ -32,7 +32,7 @@ return {
 				h = { builtin.help_tags, "Find help" },
 				r = { builtin.resume, "Find resume" },
 				w = { builtin.grep_string, "Find word by grep" },
-				s = { builtin.spell_suggest, "Find spelling" },
+				s = { builtin.git_status, "Find git status" },
 				k = { builtin.keymaps, "Find keymaps" },
 				o = { builtin.oldfiles, "Find recent files" },
 				f = {
