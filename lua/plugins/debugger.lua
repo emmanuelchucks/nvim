@@ -69,7 +69,8 @@ return {
 					name = "Launch file",
 					program = "${file}",
 					cwd = "${workspaceFolder}",
-					runtimeExecutable = "tsx",
+					runtimeExecutable = "bunx",
+					runtimeArgs = { "tsx" },
 				},
 				{
 					type = "pwa-node",
