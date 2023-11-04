@@ -35,7 +35,7 @@ return {
 
 	{
 		"windwp/nvim-ts-autotag",
-		event = { "InsertEnter" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {},
 	},
 
@@ -57,7 +57,7 @@ return {
 
 	{
 		"folke/todo-comments.nvim",
-		event = { "BufReadPre" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
 		config = function()
@@ -72,7 +72,7 @@ return {
 
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		event = { "BufReadPre" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			enable_autocmd = false,
 		},

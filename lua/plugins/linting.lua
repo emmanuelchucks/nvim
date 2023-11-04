@@ -3,7 +3,7 @@
 
 return {
 	"mfussenegger/nvim-lint",
-	event = { "BufEnter", "BufWritePost", "InsertLeave", "TextChanged" },
+	event = { "BufReadPost", "BufWritePost", "InsertLeave", "TextChanged" },
 	config = function(opts)
 		require("lint").linters_by_ft = {
 			javascript = { "eslint_d" },

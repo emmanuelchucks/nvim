@@ -5,7 +5,7 @@ return {
 	-- Detect tabstop and shiftwidth automatically
 	{
 		"tpope/vim-sleuth",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 	},
 
 	{
@@ -21,7 +21,7 @@ return {
 		-- Set lualine as statusline
 		-- See `:help lualine.txt`
 		"nvim-lualine/lualine.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			options = {
 				icons_enabled = false,
@@ -36,7 +36,7 @@ return {
 		-- Add indentation guides even on blank lines
 		-- See `:help ibl`
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		main = "ibl",
 		opts = {},
 	},
