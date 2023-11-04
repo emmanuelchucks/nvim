@@ -1,16 +1,23 @@
 -- keymaps.lua
 --
 
--- Keymaps for better default experience
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+return {
+	-- Useful plugin to show you pending keybinds.
+	"folke/which-key.nvim",
+	event = { "VeryLazy" },
+	opts = {},
+	config = function()
+		local wk = require("which-key")
+		wk.register({
+			["<leader>"] = {
+				e = { vim.diagnostic.open_float, "Open floating diagnostic message" },
+				l = { "<cmd>Lazy<cr>", "Open lazy" },
+				m = { "<cmd>Mason<cr>", "Open mason" },
+			},
+		})
 
--- Open floating diagnostic message
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-
--- Open Lazy
-vim.keymap.set("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Open lazy" })
-
--- Open Mason
-vim.keymap.set("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Open mason" })
-
-return {}
+		wk.register({
+			["<space>"] = { "<nop>" },
+		}, { mode = { "n", "v" }, silent = true })
+	end,
+}

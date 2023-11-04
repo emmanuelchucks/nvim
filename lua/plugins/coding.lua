@@ -22,7 +22,7 @@ return {
 			})
 
 			require("which-key").register({
-				[toggle_key] = { name = "Toggle", _ = "which_key_ignore" },
+				[toggle_key] = { name = "Toggle" },
 			})
 		end,
 	},
@@ -59,12 +59,15 @@ return {
 		"folke/todo-comments.nvim",
 		event = { "BufReadPre" },
 		dependencies = { "nvim-lua/plenary.nvim" },
-		keys = {
-			{ "]t", ":lua require('todo-comments').jump_next()<cr>", desc = "Next todo" },
-			{ "[t", ":lua require('todo-comments').jump_prev()<cr>", desc = "Previous todo" },
-			{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find todos" },
-		},
 		opts = {},
+		config = function()
+			local todo = require("todo-comments")
+			require("which-key").register({
+				["]t"] = { todo.jump_next, "Next todo" },
+				["[t"] = { todo.jump_prev, "Previous todo" },
+				["<leader>ft"] = { "<cmd>TodoTelescope<cr>", "Find todos" },
+			})
+		end,
 	},
 
 	{

@@ -36,27 +36,23 @@ local servers = {
 local on_attach = function(_, bufnr)
 	local builtin = require("telescope.builtin")
 
-	local map = function(key, func, desc)
-		vim.keymap.set("n", key, func, { buffer = bufnr, desc = "LSP: " .. desc })
-	end
-
-	-- See `:help K` for why this keymap
-	map("K", vim.lsp.buf.hover, "Hover documentation")
-
-	local code_prefix = "<leader>c"
-	map(code_prefix .. "r", vim.lsp.buf.rename, "Rename")
-	map(code_prefix .. "a", vim.lsp.buf.code_action, "Code actions")
-
-	local goto_prefix = "<leader>g"
-	map(goto_prefix .. "d", builtin.lsp_definitions, "Goto definition")
-	map(goto_prefix .. "r", builtin.lsp_references, "Goto references")
-	map(goto_prefix .. "i", builtin.lsp_implementations, "Goto implementation")
-	map(goto_prefix .. "t", builtin.lsp_type_definitions, "Goto type definition")
-
 	require("which-key").register({
-		[code_prefix] = { name = "Code", _ = "which_key_ignore" },
-		[goto_prefix] = { name = "Goto", _ = "which_key_ignore" },
-	})
+		K = { vim.lsp.buf.hover, "Hover documentation" },
+		["<leader>"] = {
+			c = {
+				name = "Code",
+				r = { vim.lsp.buf.rename, "Rename" },
+				a = { vim.lsp.buf.code_action, "Code actions" },
+			},
+			g = {
+				name = "Goto",
+				d = { builtin.lsp_definitions, "Goto definition" },
+				r = { builtin.lsp_references, "Goto references" },
+				i = { builtin.lsp_implementations, "Goto implementation" },
+				t = { builtin.lsp_type_definitions, "Goto type definition" },
+			},
+		},
+	}, { buffer = bufnr })
 end
 
 return {

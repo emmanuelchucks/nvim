@@ -18,13 +18,6 @@ return {
 	},
 
 	{
-		-- Useful plugin to show you pending keybinds.
-		"folke/which-key.nvim",
-		event = { "VeryLazy" },
-		opts = {},
-	},
-
-	{
 		-- Set lualine as statusline
 		-- See `:help lualine.txt`
 		"nvim-lualine/lualine.nvim",
@@ -56,17 +49,13 @@ return {
 			result_split_in_place = true,
 		},
 		config = function()
-			local prefix = "<leader>r"
-			local map = function(key, func, desc)
-				vim.keymap.set("n", key, func, { desc = desc })
-			end
-
-			map(prefix .. "r", "<Plug>RestNvim", "Run request")
-			map(prefix .. "p", "<Plug>RestNvimPreview", "Run preview")
-			map(prefix .. "l", "<Plug>RestNvimLast", "Run last request")
-
 			require("which-key").register({
-				["<leader>r"] = { name = "Rest", _ = "which_key_ignore" },
+				["<leader>r"] = {
+					name = "Rest",
+					r = { "<Plug>RestNvim", "Run request" },
+					p = { "<Plug>RestNvimPreview", "Run preview" },
+					l = { "<Plug>RestNvimLast", "Run last request" },
+				},
 			})
 		end,
 	},

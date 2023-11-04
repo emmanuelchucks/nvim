@@ -22,25 +22,7 @@ return {
 			},
 
 			automatic_setup = true,
-		})
 
-		local prefix = "<leader>d"
-		local map = function(key, func, desc)
-			vim.keymap.set("n", key, func, { desc = "Debug: " .. desc })
-		end
-
-		-- Basic debugging keymaps
-		map(prefix .. "c", dap.continue, "Start/Continue")
-		map(prefix .. "i", dap.step_into, "Step Into")
-		map(prefix .. "o", dap.step_over, "Step Over")
-		map(prefix .. "u", dap.step_out, "Step Out")
-		map(prefix .. "b", dap.toggle_breakpoint, "Toggle Breakpoint")
-		map(prefix .. "B", function()
-			dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
-		end, "Set Breakpoint")
-
-		require("which-key").register({
-			[prefix] = { name = "Debug", _ = "which_key_ignore" },
 		})
 
 		-- Dap UI setup
@@ -62,9 +44,6 @@ return {
 				},
 			},
 		})
-
-		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-		map(prefix .. "l", dapui.toggle, "See last session result")
 
 		dap.listeners.after.event_initialized["dapui_config"] = dapui.open
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
@@ -101,5 +80,18 @@ return {
 				},
 			}
 		end
+
+		require("which-key").register({
+			["<leader>d"] = {
+				name = "Debug",
+				c = { dap.continue, "Continue" },
+				i = { dap.step_into, "Step into" },
+				o = { dap.step_over, "Step over" },
+				u = { dap.step_out, "Step out" },
+				b = { dap.toggle_breakpoint, "Toggle breakpoint" },
+				B = { dap.set_breakpoint, "Set breakpoint" },
+				l = { dapui.toggle, "See last session result" },
+			},
+		})
 	end,
 }
