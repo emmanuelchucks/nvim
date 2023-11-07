@@ -35,6 +35,7 @@ return {
 				s = { builtin.git_status, "Find git status" },
 				k = { builtin.keymaps, "Find keymaps" },
 				o = { builtin.oldfiles, "Find recent files" },
+				q = { builtin.quickfix, "Find quickfix" },
 				f = {
 					function()
 						if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
