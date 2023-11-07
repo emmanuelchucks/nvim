@@ -14,4 +14,7 @@ vim.o.timeoutlen = 300
 -- Confirm save before exit
 vim.o.confirm = true
 
+-- Increase scroll offset
+vim.o.scrolloff = 8
+
 return {}
