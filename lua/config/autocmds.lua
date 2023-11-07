@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
-	pattern = { "help", "fugitive" },
+	pattern = { "help", "fugitive", "qf" },
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 		vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
