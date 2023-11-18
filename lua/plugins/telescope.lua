@@ -25,9 +25,9 @@ return {
 		local builtin = require("telescope.builtin")
 		require("which-key").register({
 			["<leader>"] = {
-				name = "Find",
 				["<space>"] = { builtin.buffers, "Find buffers" },
 				f = {
+					name = "Find",
 					["/"] = { builtin.live_grep, "Find by grep" },
 					d = { builtin.diagnostics, "Find diagnostics" },
 					h = { builtin.help_tags, "Find help" },
