@@ -59,9 +59,9 @@ return {
 		"folke/todo-comments.nvim",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
 		config = function()
 			local todo = require("todo-comments")
+			todo.setup()
 			require("which-key").register({
 				["]t"] = { todo.jump_next, "Next todo" },
 				["[t"] = { todo.jump_prev, "Previous todo" },
