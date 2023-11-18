@@ -24,29 +24,31 @@ return {
 	config = function()
 		local builtin = require("telescope.builtin")
 		require("which-key").register({
-			["<leader>f"] = {
+			["<leader>"] = {
 				name = "Find",
-				["/"] = { builtin.live_grep, "Find by grep" },
-				b = { builtin.buffers, "Find buffers" },
-				d = { builtin.diagnostics, "Find diagnostics" },
-				h = { builtin.help_tags, "Find help" },
-				r = { builtin.resume, "Find resume" },
-				w = { builtin.grep_string, "Find word by grep" },
-				s = { builtin.git_status, "Find git status" },
-				k = { builtin.keymaps, "Find keymaps" },
-				o = { builtin.oldfiles, "Find recent files" },
-				q = { builtin.quickfix, "Find quickfix" },
+				["<space>"] = { builtin.buffers, "Find buffers" },
 				f = {
-					function()
-						if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
-							builtin.git_files({
-								show_untracked = true,
-							})
-						else
-							builtin.find_files()
-						end
-					end,
-					"Find files",
+					["/"] = { builtin.live_grep, "Find by grep" },
+					d = { builtin.diagnostics, "Find diagnostics" },
+					h = { builtin.help_tags, "Find help" },
+					r = { builtin.resume, "Find resume" },
+					w = { builtin.grep_string, "Find word by grep" },
+					s = { builtin.git_status, "Find git status" },
+					k = { builtin.keymaps, "Find keymaps" },
+					o = { builtin.oldfiles, "Find recent files" },
+					q = { builtin.quickfix, "Find quickfix" },
+					f = {
+						function()
+							if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
+								builtin.git_files({
+									show_untracked = true,
+								})
+							else
+								builtin.find_files()
+							end
+						end,
+						"Find files",
+					},
 				},
 			},
 		})
