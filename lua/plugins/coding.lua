@@ -7,6 +7,7 @@ return {
 		config = function()
 			require("mini.ai").setup()
 			require("mini.bracketed").setup()
+			require("mini.files").setup()
 			require("mini.move").setup()
 			require("mini.sessions").setup()
 			require("mini.starter").setup()
