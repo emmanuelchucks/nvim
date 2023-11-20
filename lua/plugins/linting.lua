@@ -14,6 +14,7 @@ return {
 		}
 
 		vim.api.nvim_create_autocmd(opts.event, {
+			group = vim.api.nvim_create_augroup("lint", { clear = true }),
 			callback = function()
 				-- Only run if config file exists
 				if vim.fn.glob(vim.fn.getcwd() .. "/.eslintrc*") ~= "" then
