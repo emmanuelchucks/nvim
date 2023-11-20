@@ -11,8 +11,6 @@ return {
 		wk.register({
 			["<leader>"] = {
 				e = { vim.diagnostic.open_float, "Open floating diagnostic message" },
-				l = { "<cmd>Lazy<cr>", "Open lazy" },
-				m = { "<cmd>Mason<cr>", "Open mason" },
 			},
 		})
 
