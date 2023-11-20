@@ -25,7 +25,6 @@ return {
 		formatters = {
 			eslint_d = {
 				condition = function()
-					-- Only run if config file exists
 					return vim.fn.glob(vim.fn.getcwd() .. "/.eslintrc*") ~= ""
 				end,
 			},
