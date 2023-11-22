@@ -16,6 +16,6 @@ return {
 
 		wk.register({
 			["<space>"] = { "<nop>" },
-		}, { mode = { "n", "v" }, silent = true })
+		}, { mode = { "n", "v" } })
 	end,
 }
