@@ -58,9 +58,6 @@ return {
 			},
 			suggestion = {
 				auto_trigger = true,
-				keymap = {
-					accept = "<cr>",
-				},
 			},
 		},
 	},
