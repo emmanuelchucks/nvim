@@ -49,7 +49,20 @@ return {
 		"zbirenbaum/copilot.lua",
 		event = { "InsertEnter" },
 		build = ":Copilot auth",
-		opts = {},
+		opts = {
+			panel = {
+				auto_refresh = true,
+				keymap = {
+					open = "<m-p>",
+				},
+			},
+			suggestion = {
+				auto_trigger = true,
+				keymap = {
+					accept = "<cr>",
+				},
+			},
+		},
 	},
 
 	{
