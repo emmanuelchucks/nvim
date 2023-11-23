@@ -8,6 +8,9 @@ return {
 		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",
 
+		-- Shows virtual text for the current line's breakpoints
+		{ "theHamsta/nvim-dap-virtual-text", opts = {} },
+
 		-- Installs the debug adapters for you
 		"williamboman/mason.nvim",
 		"jay-babu/mason-nvim-dap.nvim",
