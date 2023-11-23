@@ -3,14 +3,18 @@
 
 return {
 	"hrsh7th/nvim-cmp",
-	event = { "InsertEnter" },
+	event = { "VeryLazy" },
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 
-		-- Adds LSP completion capabilities
+		-- Completion sources
 		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-buffer",
+		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-cmdline",
+		{ "petertriho/cmp-git", opts = {} },
 
 		-- Adds a number of user-friendly snippets
 		"rafamadriz/friendly-snippets",
@@ -28,10 +32,12 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
-			sources = {
+			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
-			},
+			}, {
+				{ name = "buffer" },
+			}),
 			mapping = cmp.mapping.preset.insert({
 				["<c-space>"] = cmp.mapping.complete(),
 				["<cr>"] = cmp.mapping.confirm({
@@ -56,6 +62,34 @@ return {
 						fallback()
 					end
 				end, { "i", "s" }),
+			}),
+		})
+
+		-- Set configuration for specific filetype.
+		cmp.setup.filetype("gitcommit", {
+			sources = cmp.config.sources({
+				{ name = "git" },
+				{ name = "luasnip" },
+			}, {
+				{ name = "buffer" },
+			}),
+		})
+
+		-- Use buffer source for `/` and `?`
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = {
+				{ name = "buffer" },
+			},
+		})
+
+		-- Use cmdline & path source for ':'
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{ name = "cmdline", keyword_length = 5 },
 			}),
 		})
 	end,
