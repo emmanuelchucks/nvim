@@ -93,7 +93,7 @@ return {
 		require("which-key").register({
 			["<leader>d"] = {
 				name = "Debug",
-				c = { dap.continue, "Continue" },
+				s = { dap.continue, "Start/Continue" },
 				i = { dap.step_into, "Step into" },
 				o = { dap.step_over, "Step over" },
 				u = { dap.step_out, "Step out" },
