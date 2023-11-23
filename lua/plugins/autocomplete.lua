@@ -15,7 +15,6 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-cmdline",
 		{ "petertriho/cmp-git", opts = {} },
-		{ "zbirenbaum/copilot-cmp", opts = {} },
 
 		-- Adds a number of user-friendly snippets
 		"rafamadriz/friendly-snippets",
@@ -34,7 +33,6 @@ return {
 				end,
 			},
 			sources = cmp.config.sources({
-				{ name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 			}, {
