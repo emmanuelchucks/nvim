@@ -49,11 +49,7 @@ return {
 		"zbirenbaum/copilot.lua",
 		event = { "InsertEnter" },
 		build = ":Copilot auth",
-		opts = {
-			suggestion = {
-				auto_trigger = true,
-			},
-		},
+		opts = {},
 	},
 
 	{
