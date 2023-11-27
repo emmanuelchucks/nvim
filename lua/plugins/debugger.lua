@@ -57,8 +57,8 @@ return {
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
-		dap.adapters = {
-			["pwa-node"] = {
+		for _, adapter in ipairs({ "pwa-node", "pwa-chrome" }) do
+			dap.adapters[adapter] = {
 				type = "server",
 				host = "localhost",
 				port = "${port}",
@@ -66,26 +66,39 @@ return {
 					command = "js-debug-adapter",
 					args = { "${port}" },
 				},
-			},
-		}
+			}
+		end
 
 		for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
 			dap.configurations[language] = {
 				{
 					type = "pwa-node",
 					request = "launch",
-					name = "Launch file",
+					name = "Launch (Node)",
 					program = "${file}",
 					cwd = "${workspaceFolder}",
 					runtimeExecutable = "bunx",
 					runtimeArgs = { "tsx" },
 				},
 				{
+					type = "pwa-chrome",
+					request = "launch",
+					name = "Launch (Chrome)",
+					url = "http://localhost:5173",
+					sourceMaps = true,
+					webRoot = "${workspaceFolder}",
+					protocol = "inspector",
+					skipFiles = { "**/node_modules/**/*" },
+				},
+				{
 					type = "pwa-node",
 					request = "attach",
-					name = "Attach",
+					name = "Attach (Node)",
 					processId = require("dap.utils").pick_process,
 					cwd = "${workspaceFolder}",
+					sourceMaps = true,
+					resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
+					skipFiles = { "${workspaceFolder}/node_modules/**/*" },
 				},
 			}
 		end
