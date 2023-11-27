@@ -77,19 +77,19 @@ return {
 	},
 
 	{
-		"numToStr/Comment.nvim",
+		"JoosepAlviste/nvim-ts-context-commentstring",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-		dependencies = {
-			{
-				"JoosepAlviste/nvim-ts-context-commentstring",
-				opts = {
-					enable_autocmd = false,
-				},
-			},
+		opts = {
+			enable_autocmd = false,
 		},
 		config = function()
-			require("Comment").setup({
-				pre_hook = require("ts_context_commentstring.internal").pre_hook,
+			require("mini.comment").setup({
+				options = {
+					custom_commentstring = function()
+						return require("ts_context_commentstring.internal").calculate_commentstring()
+							or vim.bo.commentstring
+					end,
+				},
 			})
 		end,
 	},
