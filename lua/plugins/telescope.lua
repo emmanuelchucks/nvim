@@ -40,6 +40,7 @@ return {
 					r = { builtin.resume, "Find resume" },
 					w = { builtin.grep_string, "Find word by grep" },
 					s = { builtin.git_status, "Find git status" },
+					j = { builtin.jumplist, "Find jumplist" },
 					k = { builtin.keymaps, "Find keymaps" },
 					o = { builtin.oldfiles, "Find recent files" },
 					q = { builtin.quickfix, "Find quickfix" },
