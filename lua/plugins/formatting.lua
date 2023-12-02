@@ -28,9 +28,6 @@ return {
 					return vim.fn.glob(vim.fn.getcwd() .. "/.eslintrc*") ~= ""
 				end,
 			},
-			prettierd = {
-				prepend_args = { "--no-semi", "--use-tabs" },
-			},
 		},
 	},
 }
