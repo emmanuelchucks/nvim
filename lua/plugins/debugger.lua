@@ -104,15 +104,14 @@ return {
 		end
 
 		require("which-key").register({
-			b = { dap.toggle_breakpoint, "Toggle breakpoint" },
-			B = { dap.set_breakpoint, "Set breakpoint" },
 			["<leader>d"] = {
 				name = "Debug",
 				s = { dap.continue, "Start/Continue" },
 				i = { dap.step_into, "Step into" },
 				o = { dap.step_over, "Step over" },
 				O = { dap.step_out, "Step out" },
-				b = { dap.step_back, "Step back" },
+				b = { dap.toggle_breakpoint, "Toggle breakpoint" },
+				B = { dap.set_breakpoint, "Set breakpoint" },
 				l = { dap.run_last, "Run last" },
 				L = { dapui.toggle, "See last session result" },
 				q = { dap.disconnect, "Disconnect" },
