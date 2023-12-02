@@ -7,6 +7,8 @@ return {
 	event = { "VeryLazy" },
 	dependencies = {
 		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-ui-select.nvim",
+
 		-- Fuzzy Finder Algorithm which requires local dependencies to be built.
 		-- Only load if `make` is available.
 		{
@@ -23,6 +25,10 @@ return {
 	},
 	config = function()
 		local builtin = require("telescope.builtin")
+
+		-- Use telescope for selecting from multiple options
+		require("telescope").load_extension("ui-select")
+
 		require("which-key").register({
 			["<leader>"] = {
 				["<space>"] = { builtin.buffers, "Find buffers" },
