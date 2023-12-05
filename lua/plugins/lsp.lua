@@ -39,18 +39,18 @@ local on_attach = function(_, bufnr)
 
 	require("which-key").register({
 		K = { vim.lsp.buf.hover, "Hover documentation" },
+		g = {
+			name = "Goto",
+			d = { builtin.lsp_definitions, "Go to definition" },
+			r = { builtin.lsp_references, "Go to references" },
+			i = { builtin.lsp_implementations, "Go to implementation" },
+			t = { builtin.lsp_type_definitions, "Go to type definition" },
+		},
 		["<leader>"] = {
 			c = {
 				name = "Code",
 				r = { vim.lsp.buf.rename, "Rename" },
 				a = { vim.lsp.buf.code_action, "Code actions" },
-			},
-			g = {
-				name = "Goto",
-				d = { builtin.lsp_definitions, "Goto definition" },
-				r = { builtin.lsp_references, "Goto references" },
-				i = { builtin.lsp_implementations, "Goto implementation" },
-				t = { builtin.lsp_type_definitions, "Goto type definition" },
 			},
 		},
 	}, { buffer = bufnr })
