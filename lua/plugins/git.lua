@@ -38,12 +38,12 @@ local on_attach = function(bufnr)
 	}, { expr = true, buffer = bufnr })
 
 	wk.register({
+		t = {
+			name = "Toggle",
+			b = { gitsigns.toggle_current_line_blame, "Toggle blame line" },
+			d = { gitsigns.toggle_deleted, "Toggle deleted" },
+		},
 		["<leader>"] = {
-			t = {
-				name = "Toggle",
-				b = { gitsigns.toggle_current_line_blame, "Toggle blame line" },
-				d = { gitsigns.toggle_deleted, "Toggle deleted" },
-			},
 			h = {
 				name = "Hunk",
 				s = { gitsigns.stage_hunk, "Stage hunk" },
