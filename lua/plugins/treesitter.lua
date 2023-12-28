@@ -14,7 +14,6 @@ return {
 		vim.defer_fn(function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
-					"astro",
 					"http",
 					"json",
 					"jsonc",

@@ -10,13 +10,12 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescript = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
-			astro = { "eslint_d" },
 		}
 
 		vim.api.nvim_create_autocmd(opts.event, {
 			group = vim.api.nvim_create_augroup("lint", { clear = true }),
 			callback = function()
-					require("lint").try_lint()
+				require("lint").try_lint()
 			end,
 		})
 	end,
