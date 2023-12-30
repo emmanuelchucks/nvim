@@ -37,6 +37,7 @@ return {
 				{ name = "luasnip" },
 			}, {
 				{ name = "buffer" },
+				{ name = "path" },
 			}),
 			mapping = cmp.mapping.preset.insert({
 				["<c-space>"] = cmp.mapping.complete(),
