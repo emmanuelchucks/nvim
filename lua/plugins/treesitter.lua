@@ -34,5 +34,8 @@ return {
 				},
 			})
 		end, 0)
+
+		-- Support mdx files
+		vim.filetype.add({ extension = { mdx = "markdown.mdx" } })
 	end,
 }
