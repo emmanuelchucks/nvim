@@ -2,6 +2,11 @@
 --
 
 local servers = {
+	cssls = {
+		css = {
+			validate = false,
+		},
+	},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
