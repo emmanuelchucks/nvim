@@ -39,9 +39,6 @@ return {
 				{ name = "buffer" },
 				{ name = "path" },
 			}),
-			completion = {
-				completeopt = "menu,menuone,noinsert",
-			},
 			mapping = cmp.mapping.preset.insert({
 				["<c-space>"] = cmp.mapping.complete(),
 				["<cr>"] = cmp.mapping.confirm({
