@@ -13,7 +13,7 @@ return {
 	config = function()
 		vim.defer_fn(function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "css", "http", "json", "jsonc", "lua", "typescript", "tsx" },
+				ensure_installed = { "css", "http", "json", "jsonc", "lua", "typescript", "tsx", "yaml" },
 				highlight = { enable = true },
 				indent = { enable = true },
 				incremental_selection = {

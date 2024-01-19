@@ -14,6 +14,7 @@ return {
 			json = { "prettierd" },
 			jsonc = { "prettierd" },
 			markdown = { "prettierd" },
+			yaml = { "prettierd" },
 			lua = { "stylua" },
 		},
 
