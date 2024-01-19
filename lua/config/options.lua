@@ -17,4 +17,7 @@ vim.o.confirm = true
 -- Increase scroll offset
 vim.o.scrolloff = 8
 
+-- Reduce default tab stop
+vim.o.tabstop = 4
+
 return {}
