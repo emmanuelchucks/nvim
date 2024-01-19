@@ -7,22 +7,17 @@ local servers = {
 			validate = false,
 		},
 	},
-	lua_ls = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-			diagnostics = { disable = { "missing-fields" } },
-		},
-	},
 	jsonls = {
 		json = {
 			schemas = require("schemastore").json.schemas(),
 			validate = { enable = true },
 		},
 	},
-	tsserver = {
-		completions = {
-			completeFunctionCalls = true,
+	lua_ls = {
+		Lua = {
+			workspace = { checkThirdParty = false },
+			telemetry = { enable = false },
+			diagnostics = { disable = { "missing-fields" } },
 		},
 	},
 	tailwindcss = {
@@ -33,6 +28,11 @@ local servers = {
 					{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
 				},
 			},
+		},
+	},
+	tsserver = {
+		completions = {
+			completeFunctionCalls = true,
 		},
 	},
 }
