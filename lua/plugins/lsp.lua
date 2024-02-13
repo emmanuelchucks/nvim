@@ -2,11 +2,6 @@
 --
 
 local servers = {
-	cssls = {
-		css = {
-			validate = false,
-		},
-	},
 	jsonls = {
 		json = {
 			schemas = require("schemastore").json.schemas(),
