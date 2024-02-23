@@ -15,6 +15,7 @@ local servers = {
 			diagnostics = { disable = { "missing-fields" } },
 		},
 	},
+	rust_analyzer = {},
 	tailwindcss = {
 		tailwindCSS = {
 			experimental = {
