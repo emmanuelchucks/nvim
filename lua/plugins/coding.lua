@@ -5,7 +5,7 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		config = function()
-			require("mini.ai").setup()
+			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.statusline").setup()
 			require("mini.bracketed").setup()
 			require("mini.move").setup()
@@ -68,7 +68,7 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local todo = require("todo-comments")
-			todo.setup()
+			todo.setup({ signs = false })
 			require("which-key").register({
 				["]t"] = { todo.jump_next, "Next todo" },
 				["[t"] = { todo.jump_prev, "Previous todo" },
