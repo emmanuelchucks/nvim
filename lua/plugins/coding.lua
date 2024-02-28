@@ -80,10 +80,10 @@ return {
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-		opts = {
-			enable_autocmd = false,
-		},
 		config = function()
+			require("ts_context_commentstring").setup({
+				enable_autocmd = false,
+			})
 			require("mini.comment").setup({
 				options = {
 					custom_commentstring = function()
