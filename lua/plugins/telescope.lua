@@ -33,14 +33,13 @@ return {
 					name = "Find",
 					["/"] = { builtin.live_grep, "Find by grep" },
 					["*"] = { builtin.grep_string, "Find word under cursor" },
+					b = { builtin.builtin, "Find builtins" },
 					d = { builtin.diagnostics, "Find diagnostics" },
 					h = { builtin.help_tags, "Find help" },
 					r = { builtin.resume, "Find resume" },
-					s = { builtin.git_status, "Find git status" },
 					j = { builtin.jumplist, "Find jumplist" },
 					k = { builtin.keymaps, "Find keymaps" },
 					o = { builtin.oldfiles, "Find recent files" },
-					q = { builtin.quickfix, "Find quickfix" },
 					w = { builtin.lsp_dynamic_workspace_symbols, "Find workspace symbols" },
 					f = {
 						function()
