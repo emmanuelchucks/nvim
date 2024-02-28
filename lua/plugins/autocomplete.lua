@@ -6,7 +6,18 @@ return {
 	event = { "VeryLazy" },
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
-		"L3MON4D3/LuaSnip",
+		{
+			"L3MON4D3/LuaSnip",
+			build = (function()
+				-- Build Step is needed for regex support in snippets
+				-- This step is not supported in many windows environments
+				-- Remove the below condition to re-enable on windows
+				if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
+					return
+				end
+				return "make install_jsregexp"
+			end)(),
+		},
 		"saadparwaiz1/cmp_luasnip",
 
 		-- Completion sources
@@ -32,6 +43,7 @@ return {
 					luasnip.lsp_expand(args.body)
 				end,
 			},
+			completion = { completeopt = "menu,menuone,noinsert" },
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
@@ -45,22 +57,16 @@ return {
 					behavior = cmp.ConfirmBehavior.Replace,
 					select = true,
 				}),
-				["<tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item()
-					elseif luasnip.expand_or_locally_jumpable() then
+				-- <c-l> will move you to the right of each of the expansion locations.
+				["<C-l>"] = cmp.mapping(function()
+					if luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
-					else
-						fallback()
 					end
 				end, { "i", "s" }),
-				["<s-tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item()
-					elseif luasnip.locally_jumpable(-1) then
+				-- <c-h> is similar, except moving you backwards.
+				["<C-h>"] = cmp.mapping(function()
+					if luasnip.locally_jumpable(-1) then
 						luasnip.jump(-1)
-					else
-						fallback()
 					end
 				end, { "i", "s" }),
 			}),
@@ -90,7 +96,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "path" },
 			}, {
-				{ name = "cmdline", keyword_length = 5 },
+				{ name = "cmdline", keyword_length = 4 },
 			}),
 		})
 	end,
