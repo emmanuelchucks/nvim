@@ -21,21 +21,6 @@ return {
 	},
 
 	{
-		-- Set lualine as statusline
-		-- See `:help lualine.txt`
-		"nvim-lualine/lualine.nvim",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-		opts = {
-			options = {
-				icons_enabled = false,
-				theme = "onedark",
-				component_separators = "|",
-				section_separators = "",
-			},
-		},
-	},
-
-	{
 		-- Add indentation guides even on blank lines
 		-- See `:help ibl`
 		"lukas-reineke/indent-blankline.nvim",
