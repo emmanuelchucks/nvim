@@ -113,11 +113,17 @@ return {
 
 			require("mason").setup()
 			require("mason-tool-installer").setup({
-				ensure_installed = vim.tbl_extend("force", vim.tbl_keys(servers), {
-					"stylua",
-					"eslint_d",
-					"prettierd",
-				}),
+				ensure_installed = vim.tbl_extend(
+					"force",
+					vim.tbl_filter(function(server_name)
+						return server_name ~= "tsserver"
+					end, vim.tbl_keys(servers)),
+					{
+						"stylua",
+						"eslint_d",
+						"prettierd",
+					}
+				),
 			})
 
 			require("mason-lspconfig").setup({
