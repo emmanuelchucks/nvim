@@ -1,6 +1,3 @@
--- Enable relative line numbers
-vim.o.relativenumber = true
-
 -- Sync clipboard between OS and Neovim
 vim.o.clipboard = "unnamedplus"
 
