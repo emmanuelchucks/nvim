@@ -17,17 +17,14 @@ return {
 			cond = function()
 				return vim.fn.executable("make") == 1
 			end,
-			config = function()
-				-- Enable telescope fzf native, if installed
-				pcall(require("telescope").load_extension, "fzf")
-			end,
 		},
 	},
 	config = function()
 		local builtin = require("telescope.builtin")
 
-		-- Use telescope for selecting from multiple options
-		require("telescope").load_extension("ui-select")
+		-- Enable telescope extensions, if they are installed
+		pcall(require("telescope").load_extension, "fzf")
+		pcall(require("telescope").load_extension, "ui-select")
 
 		require("which-key").register({
 			["<leader>"] = {
