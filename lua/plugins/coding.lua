@@ -6,6 +6,7 @@ return {
 		"echasnovski/mini.nvim",
 		config = function()
 			require("mini.ai").setup()
+			require("mini.statusline").setup()
 			require("mini.bracketed").setup()
 			require("mini.move").setup()
 			require("mini.sessions").setup()
