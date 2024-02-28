@@ -40,7 +40,6 @@ return {
 					j = { builtin.jumplist, "Find jumplist" },
 					k = { builtin.keymaps, "Find keymaps" },
 					o = { builtin.oldfiles, "Find recent files" },
-					w = { builtin.lsp_dynamic_workspace_symbols, "Find workspace symbols" },
 					f = {
 						function()
 							if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
