@@ -49,6 +49,7 @@ return {
 	-- LSP Configuration & Plugins
 	{
 		"neovim/nvim-lspconfig",
+		event = { "VeryLazy" },
 		dependencies = {
 			-- Automatically install LSPs to stdpath for neovim
 			"williamboman/mason.nvim",
@@ -78,7 +79,7 @@ return {
 
 	{
 		"williamboman/mason-lspconfig.nvim",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		event = { "VeryLazy" },
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			--  This function gets run when an LSP attaches to a particular buffer.
