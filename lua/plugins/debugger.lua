@@ -3,7 +3,7 @@
 
 return {
 	"mfussenegger/nvim-dap",
-	event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+	lazy = true,
 	dependencies = {
 		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",

@@ -30,13 +30,13 @@ return {
 
 	{
 		"windwp/nvim-autopairs",
-		event = "InsertEnter",
+		event = { "InsertEnter" },
 		opts = {},
 	},
 
 	{
 		"windwp/nvim-ts-autotag",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		event = { "InsertEnter" },
 		opts = {},
 	},
 
@@ -79,7 +79,7 @@ return {
 
 	{
 		"JoosepAlviste/nvim-ts-context-commentstring",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+		event = { "InsertEnter" },
 		config = function()
 			require("ts_context_commentstring").setup({
 				enable_autocmd = false,
