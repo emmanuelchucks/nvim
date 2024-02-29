@@ -53,7 +53,7 @@ return {
 			panel = {
 				auto_refresh = true,
 				keymap = {
-					open = "<m-p>",
+					open = "<m-o>",
 				},
 			},
 			suggestion = {
