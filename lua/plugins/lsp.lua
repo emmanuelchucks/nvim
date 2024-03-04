@@ -25,6 +25,7 @@ local servers = {
 					-- If lua_ls is really slow on your computer, you can try this instead:
 					-- library = { vim.env.VIMRUNTIME },
 				},
+				completion = { callSnippet = "Replace" },
 				diagnostics = { disable = { "missing-fields" } },
 			},
 		},
