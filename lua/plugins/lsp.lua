@@ -131,24 +131,14 @@ return {
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
+						server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
 
 						if server_name == "tsserver" then
-							require("typescript-tools").setup({
-								cmd = server.cmd,
-								settings = server.settings,
-								filetypes = server.filetypes,
-								capabilities = capabilities,
-							})
+							require("typescript-tools").setup(server)
 							return
 						end
 
-						require("lspconfig")[server_name].setup({
-							cmd = server.cmd,
-							settings = server.settings,
-							filetypes = server.filetypes,
-							capabilities = capabilities,
-						})
+						require("lspconfig")[server_name].setup(server)
 					end,
 				},
 			})
