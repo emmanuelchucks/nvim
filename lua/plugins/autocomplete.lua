@@ -52,10 +52,7 @@ return {
 			}),
 			mapping = cmp.mapping.preset.insert({
 				["<c-space>"] = cmp.mapping.complete(),
-				["<cr>"] = cmp.mapping.confirm({
-					behavior = cmp.ConfirmBehavior.Replace,
-					select = true,
-				}),
+				["<c-y>"] = cmp.mapping.confirm({ select = true }),
 				-- <c-l> will move you to the right of each of the expansion locations.
 				["<c-l>"] = cmp.mapping(function()
 					if luasnip.expand_or_locally_jumpable() then
