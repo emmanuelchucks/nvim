@@ -70,8 +70,6 @@ return {
 			local todo = require("todo-comments")
 			todo.setup({ signs = false })
 			require("which-key").register({
-				["]t"] = { todo.jump_next, "Next todo" },
-				["[t"] = { todo.jump_prev, "Previous todo" },
 				["<leader>ft"] = { "<cmd>TodoTelescope<cr>", "Find todos" },
 			})
 		end,
