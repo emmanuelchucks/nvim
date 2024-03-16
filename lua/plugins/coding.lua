@@ -12,6 +12,7 @@ return {
 			require("mini.sessions").setup()
 			require("mini.starter").setup()
 			require("mini.surround").setup()
+			require("mini.misc").setup_restore_cursor()
 
 			local toggle_key = "t"
 			require("mini.basics").setup({
