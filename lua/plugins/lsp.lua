@@ -30,7 +30,6 @@ local servers = {
 			},
 		},
 	},
-	rust_analyzer = {},
 	tailwindcss = {
 		settings = {
 			tailwindCSS = {

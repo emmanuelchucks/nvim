@@ -16,7 +16,6 @@ return {
 			markdown = { "prettierd" },
 			yaml = { "prettierd" },
 			lua = { "stylua" },
-			rust = { "rustfmt" },
 		},
 
 		format_on_save = {
