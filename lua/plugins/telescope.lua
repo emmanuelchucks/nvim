@@ -48,6 +48,12 @@ return {
 					j = { builtin.jumplist, "Find jumplist" },
 					k = { builtin.keymaps, "Find keymaps" },
 					o = { builtin.oldfiles, "Find recent files" },
+					s = {
+						function()
+							require("mini.sessions").select()
+						end,
+						"Find session",
+					},
 					f = {
 						function()
 							if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
