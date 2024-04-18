@@ -22,6 +22,14 @@ return {
 	config = function()
 		local builtin = require("telescope.builtin")
 
+		require("telescope").setup({
+			defaults = {
+				file_ignore_patterns = {
+					"node_modules",
+				},
+			},
+		})
+
 		-- Enable telescope extensions, if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
@@ -40,7 +48,6 @@ return {
 					j = { builtin.jumplist, "Find jumplist" },
 					k = { builtin.keymaps, "Find keymaps" },
 					o = { builtin.oldfiles, "Find recent files" },
-					s = { builtin.lsp_document_symbols, "Find document symbols" },
 					f = {
 						function()
 							if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then

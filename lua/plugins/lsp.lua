@@ -91,6 +91,11 @@ return {
 					require("which-key").register({
 						K = { vim.lsp.buf.hover, "Hover documentation" },
 						["<leader>"] = {
+							f = {
+								name = "Find",
+								s = { builtin.lsp_document_symbols, "Find document symbols" },
+								w = { builtin.lsp_dynamic_workspace_symbols, "Find workspace symbols" },
+							},
 							c = {
 								name = "Code",
 								r = { vim.lsp.buf.rename, "Rename" },
