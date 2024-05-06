@@ -126,8 +126,7 @@ return {
 					end, vim.tbl_keys(servers)),
 					{
 						"stylua",
-						"eslint_d",
-						"prettierd",
+						"biome",
 					}
 				),
 			})
