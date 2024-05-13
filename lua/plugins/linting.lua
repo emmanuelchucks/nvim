@@ -5,13 +5,6 @@ return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPost", "BufWritePost", "InsertLeave", "TextChanged" },
 	config = function(opts)
-		require("lint").linters_by_ft = {
-			javascript = { "biomejs" },
-			javascriptreact = { "biomejs" },
-			typescript = { "biomejs" },
-			typescriptreact = { "biomejs" },
-		}
-
 		vim.api.nvim_create_autocmd(opts.event, {
 			group = vim.api.nvim_create_augroup("lint", { clear = true }),
 			callback = function()
