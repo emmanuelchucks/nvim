@@ -43,6 +43,7 @@ local servers = {
 		},
 	},
 	tsserver = {},
+	biome = {},
 }
 
 return {
