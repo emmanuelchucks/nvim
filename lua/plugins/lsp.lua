@@ -90,7 +90,6 @@ return {
 					local builtin = require("telescope.builtin")
 
 					require("which-key").register({
-						K = { vim.lsp.buf.hover, "Hover documentation" },
 						["<leader>"] = {
 							f = {
 								name = "Find",
