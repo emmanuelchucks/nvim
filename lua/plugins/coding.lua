@@ -15,6 +15,7 @@ return {
 			require("mini.misc").setup_restore_cursor()
 
 			local toggle_key = "t"
+
 			require("mini.basics").setup({
 				mappings = {
 					windows = true,
