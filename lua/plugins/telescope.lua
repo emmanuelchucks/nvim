@@ -42,6 +42,7 @@ return {
 					["/"] = { builtin.live_grep, "Find by grep" },
 					["*"] = { builtin.grep_string, "Find word under cursor" },
 					b = { builtin.builtin, "Find builtins" },
+					c = { builtin.commands, "Find commands" },
 					d = { builtin.diagnostics, "Find diagnostics" },
 					h = { builtin.help_tags, "Find help" },
 					r = { builtin.resume, "Find resume" },
