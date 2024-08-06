@@ -5,7 +5,10 @@ return {
 	-- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile", "BufWritePre" },
-	dependencies = { "nvim-treesitter/nvim-treesitter-context" },
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-context",
+		"nvim-treesitter/nvim-treesitter-textobjects",
+	},
 	build = ":TSUpdate",
 	config = function()
 		require("nvim-treesitter.configs").setup({
