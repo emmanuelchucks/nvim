@@ -36,7 +36,7 @@ return {
 			})
 
 			require("which-key").add({
-				{ "t", group = "Toggle" },
+				{ toggle_key, group = "Toggle" },
 			})
 		end,
 	},
