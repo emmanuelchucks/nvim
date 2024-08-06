@@ -5,7 +5,6 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		config = function()
-			require("mini.ai").setup({ n_lines = 500 })
 			require("mini.statusline").setup()
 			require("mini.bracketed").setup()
 			require("mini.move").setup()
@@ -13,6 +12,19 @@ return {
 			require("mini.starter").setup()
 			require("mini.surround").setup()
 			require("mini.misc").setup_restore_cursor()
+
+			local spec_treesitter = require("mini.ai").gen_spec.treesitter
+
+			require("mini.ai").setup({
+				n_lines = 500,
+				custom_textobjects = {
+					f = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
+					o = spec_treesitter({
+						a = { "@conditional.outer", "@loop.outer" },
+						i = { "@conditional.inner", "@loop.inner" },
+					}),
+				},
+			})
 
 			local toggle_key = "t"
 
