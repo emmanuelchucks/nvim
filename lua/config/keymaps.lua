@@ -15,6 +15,7 @@ return {
 			spec = {
 				{ "<space>", "<nop>", mode = { "n", "v" } },
 				{ "<leader>e", vim.diagnostic.open_float, desc = "Open floating diagnostic message" },
+				{ "<leader>w", proxy = "<c-w>", group = "Windows" },
 			},
 			triggers = {
 				{ "<auto>", mode = "nixsotc" },
