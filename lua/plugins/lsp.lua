@@ -95,28 +95,30 @@ return {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
 					local builtin = require("telescope.builtin")
+					local wk = require("which-key")
 
-					require("which-key").register({
-						["<leader>"] = {
-							f = {
-								name = "Find",
-								s = { builtin.lsp_document_symbols, "Find document symbols" },
-								w = { builtin.lsp_dynamic_workspace_symbols, "Find workspace symbols" },
+					wk.add({
+						{
+							buffer = event.buf,
+							{ "<leader>f", group = "Find" },
+							{ "<leader>fs", builtin.lsp_document_symbols, desc = "Find document symbols" },
+							{
+								"<leader>fw",
+								builtin.lsp_dynamic_workspace_symbols,
+								desc = "Find workspace symbols",
 							},
-							c = {
-								name = "Code",
-								r = { vim.lsp.buf.rename, "Rename" },
-								a = { vim.lsp.buf.code_action, "Code actions" },
-							},
-							g = {
-								name = "Goto",
-								d = { builtin.lsp_definitions, "Go to definition" },
-								r = { builtin.lsp_references, "Go to references" },
-								i = { builtin.lsp_implementations, "Go to implementation" },
-								t = { builtin.lsp_type_definitions, "Go to type definition" },
-							},
+
+							{ "<leader>c", group = "Code" },
+							{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
+							{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code actions" },
+
+							{ "<leader>g", group = "Goto" },
+							{ "<leader>gd", builtin.lsp_definitions, desc = "Go to definition" },
+							{ "<leader>gr", builtin.lsp_references, desc = "Go to references" },
+							{ "<leader>gi", builtin.lsp_implementations, desc = "Go to implementation" },
+							{ "<leader>gt", builtin.lsp_type_definitions, desc = "Go to type definition" },
 						},
-					}, { buffer = event.buf })
+					})
 				end,
 			})
 

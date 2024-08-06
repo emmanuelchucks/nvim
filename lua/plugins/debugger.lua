@@ -18,6 +18,7 @@ return {
 	config = function()
 		local dap = require("dap")
 		local dapui = require("dapui")
+		local wk = require("which-key")
 
 		require("mason-nvim-dap").setup({
 			ensure_installed = {
@@ -103,19 +104,17 @@ return {
 			}
 		end
 
-		require("which-key").register({
-			["<leader>d"] = {
-				name = "Debug",
-				s = { dap.continue, "Start/Continue" },
-				i = { dap.step_into, "Step into" },
-				o = { dap.step_over, "Step over" },
-				O = { dap.step_out, "Step out" },
-				b = { dap.toggle_breakpoint, "Toggle breakpoint" },
-				B = { dap.set_breakpoint, "Set breakpoint" },
-				l = { dap.run_last, "Run last" },
-				L = { dapui.toggle, "See last session result" },
-				q = { dap.disconnect, "Disconnect" },
-			},
+		wk.add({
+			{ "<leader>d", group = "Debug" },
+			{ "<leader>ds", dap.continue, desc = "Start/Continue" },
+			{ "<leader>di", dap.step_into, desc = "Step into" },
+			{ "<leader>do", dap.step_over, desc = "Step over" },
+			{ "<leader>dO", dap.step_out, desc = "Step out" },
+			{ "<leader>db", dap.toggle_breakpoint, desc = "Toggle breakpoint" },
+			{ "<leader>dB", dap.set_breakpoint, desc = "Set breakpoint" },
+			{ "<leader>dl", dap.run_last, desc = "Run last" },
+			{ "<leader>dL", dapui.toggle, desc = "See last session result" },
+			{ "<leader>dq", dap.disconnect, desc = "Disconnect" },
 		})
 	end,
 }

@@ -20,9 +20,11 @@ return {
 		},
 	},
 	config = function()
+		local telescope = require("telescope")
 		local builtin = require("telescope.builtin")
+		local wk = require("which-key")
 
-		require("telescope").setup({
+		telescope.setup({
 			defaults = {
 				file_ignore_patterns = {
 					"node_modules",
@@ -31,43 +33,42 @@ return {
 		})
 
 		-- Enable telescope extensions, if they are installed
-		pcall(require("telescope").load_extension, "fzf")
-		pcall(require("telescope").load_extension, "ui-select")
+		pcall(telescope.load_extension, "fzf")
+		pcall(telescope.load_extension, "ui-select")
 
-		require("which-key").register({
-			["<leader>"] = {
-				["<space>"] = { builtin.buffers, "Find buffers" },
-				f = {
-					name = "Find",
-					["/"] = { builtin.live_grep, "Find by grep" },
-					["*"] = { builtin.grep_string, "Find word under cursor" },
-					b = { builtin.builtin, "Find builtins" },
-					c = { builtin.commands, "Find commands" },
-					d = { builtin.diagnostics, "Find diagnostics" },
-					h = { builtin.help_tags, "Find help" },
-					r = { builtin.resume, "Find resume" },
-					j = { builtin.jumplist, "Find jumplist" },
-					k = { builtin.keymaps, "Find keymaps" },
-					o = { builtin.oldfiles, "Find recent files" },
-					s = {
-						function()
-							require("mini.sessions").select()
-						end,
-						"Find session",
-					},
-					f = {
-						function()
-							if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
-								builtin.git_files({
-									show_untracked = true,
-								})
-							else
-								builtin.find_files()
-							end
-						end,
-						"Find files",
-					},
-				},
+		wk.add({
+			{ "<leader><space>", builtin.buffers, desc = "Find buffers" },
+
+			{ "<leader>f", group = "Find" },
+			{ "<leader>f/", builtin.live_grep, desc = "Find by grep" },
+			{ "<leader>f*", builtin.grep_string, desc = "Find word under cursor" },
+			{ "<leader>fb", builtin.builtin, desc = "Find builtins" },
+			{ "<leader>fc", builtin.commands, desc = "Find commands" },
+			{ "<leader>fd", builtin.diagnostics, desc = "Find diagnostics" },
+			{ "<leader>fh", builtin.help_tags, desc = "Find help" },
+			{ "<leader>fr", builtin.resume, desc = "Find resume" },
+			{ "<leader>fj", builtin.jumplist, desc = "Find jumplist" },
+			{ "<leader>fk", builtin.keymaps, desc = "Find keymaps" },
+			{ "<leader>fo", builtin.oldfiles, desc = "Find recent files" },
+			{
+				"<leader>fs",
+				function()
+					require("mini.sessions").select()
+				end,
+				desc = "Find session",
+			},
+			{
+				"<leader>ff",
+				function()
+					if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
+						builtin.git_files({
+							show_untracked = true,
+						})
+					else
+						builtin.find_files()
+					end
+				end,
+				desc = "Find files",
 			},
 		})
 	end,
