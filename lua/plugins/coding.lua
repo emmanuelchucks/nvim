@@ -48,18 +48,15 @@ return {
 	},
 
 	{
-		"zbirenbaum/copilot.lua",
-		event = { "InsertEnter" },
-		build = ":Copilot auth",
+		"supermaven-inc/supermaven-nvim",
 		opts = {
-			panel = {
-				auto_refresh = true,
-				keymap = {
-					open = "<m-o>",
-				},
-			},
-			suggestion = {
-				auto_trigger = true,
+			log_level = "off",
+			ignore_filetypes = {
+				gitcommit = true,
+				gitrebase = true,
+				markdown = true,
+				help = true,
+				text = true,
 			},
 		},
 	},
