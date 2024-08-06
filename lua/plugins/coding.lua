@@ -24,8 +24,8 @@ return {
 				},
 			})
 
-			require("which-key").register({
-				[toggle_key] = { name = "Toggle" },
+			require("which-key").add({
+				{ "t", group = "Toggle" },
 			})
 		end,
 	},
@@ -68,8 +68,10 @@ return {
 		config = function()
 			local todo = require("todo-comments")
 			todo.setup({ signs = false })
-			require("which-key").register({
-				["<leader>ft"] = { "<cmd>TodoTelescope<cr>", "Find todos" },
+
+			require("which-key").add({
+				{ "<leader>f", group = "Find" },
+				{ "<leader>ft", "<cmd>TodoTelescope<cr>", desc = "Find todos" },
 			})
 		end,
 	},

@@ -6,86 +6,88 @@ local on_attach = function(bufnr)
 	local gitsigns = package.loaded.gitsigns
 	local wk = require("which-key")
 
-	wk.register({
-		["ih"] = { ":<c-u>Gitsigns select_hunk<cr>", "Inner hunk" },
-	}, { mode = { "o", "x" }, buffer = bufnr })
-
-	wk.register({
-		["]h"] = {
-			function()
-				if vim.wo.diff then
-					return "]h"
-				end
-				vim.schedule(function()
-					gitsigns.next_hunk()
-				end)
-				return "<Ignore>"
-			end,
-			"Next hunk",
-		},
-		["[h"] = {
-			function()
-				if vim.wo.diff then
-					return "[h"
-				end
-				vim.schedule(function()
-					gitsigns.prev_hunk()
-				end)
-				return "<Ignore>"
-			end,
-			"Previous hunk",
-		},
-	}, { expr = true, buffer = bufnr })
-
-	wk.register({
-		t = {
-			name = "Toggle",
-			b = { gitsigns.toggle_current_line_blame, "Toggle blame line" },
-			d = { gitsigns.toggle_deleted, "Toggle deleted" },
-		},
-		["<leader>"] = {
-			h = {
-				name = "Hunk",
-				s = { gitsigns.stage_hunk, "Stage hunk" },
-				S = { gitsigns.stage_buffer, "Stage buffer" },
-				u = { gitsigns.undo_stage_hunk, "Undo stage hunk" },
-				r = { gitsigns.reset_hunk, "Reset hunk" },
-				R = { gitsigns.reset_buffer, "Reset buffer" },
-				p = { gitsigns.preview_hunk, "Preview hunk" },
-				d = { gitsigns.diffthis, "Diff this" },
-				b = {
-					function()
-						gitsigns.blame_line({ full = true })
-					end,
-					"Blame line",
-				},
-				D = {
-					function()
-						gitsigns.diffthis("~")
-					end,
-					"Diff this (cached)",
-				},
+	wk.add({
+		{
+			buffer = bufnr,
+			{
+				"ih",
+				":<c-u>Gitsigns select_hunk<cr>",
+				desc = "Inner hunk",
+				mode = { "o", "x" },
 			},
-		},
-	}, { buffer = bufnr })
-
-	wk.register({
-		["<leader>h"] = {
-			name = "Hunk",
-			s = {
+			{
+				"]h",
 				function()
-					gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					if vim.wo.diff then
+						return "]h"
+					end
+					vim.schedule(function()
+						gitsigns.next_hunk()
+					end)
+					return "<Ignore>"
 				end,
-				"Stage hunk",
+				desc = "Next hunk",
 			},
-			r = {
+			{
+				"[h",
 				function()
-					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					if vim.wo.diff then
+						return "[h"
+					end
+					vim.schedule(function()
+						gitsigns.prev_hunk()
+					end)
+					return "<Ignore>"
 				end,
-				"Reset hunk",
+				desc = "Previous hunk",
+			},
+
+			{ "t", group = "Toggle" },
+			{ "tb", gitsigns.toggle_current_line_blame, desc = "Toggle blame line" },
+			{ "td", gitsigns.toggle_deleted, desc = "Toggle deleted" },
+
+			{ "<leader>h", group = "Hunk" },
+			{ "<leader>hs", gitsigns.stage_hunk, desc = "Stage hunk" },
+			{ "<leader>hS", gitsigns.stage_buffer, desc = "Stage buffer" },
+			{ "<leader>hu", gitsigns.undo_stage_hunk, desc = "Undo stage hunk" },
+			{ "<leader>hr", gitsigns.reset_hunk, desc = "Reset hunk" },
+			{ "<leader>hR", gitsigns.reset_buffer, desc = "Reset buffer" },
+			{ "<leader>hp", gitsigns.preview_hunk, desc = "Preview hunk" },
+			{ "<leader>hd", gitsigns.diffthis, desc = "Diff this" },
+			{
+				"<leader>hb",
+				function()
+					gitsigns.blame_line({ full = true })
+				end,
+				desc = "Blame line",
+			},
+			{
+				"<leader>hD",
+				function()
+					gitsigns.diffthis("~")
+				end,
+				desc = "Diff this (cached)",
+			},
+
+			{
+				mode = "v",
+				{
+					"<leader>hs",
+					function()
+						gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					desc = "Stage hunk",
+				},
+				{
+					"<leader>hr",
+					function()
+						gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+					end,
+					desc = "Reset hunk",
+				},
 			},
 		},
-	}, { mode = "v", buffer = bufnr })
+	})
 end
 
 return {
@@ -110,6 +112,7 @@ return {
 				topdelete = { text = "‾" },
 				changedelete = { text = "~" },
 			},
+			signs_staged_enable = false,
 		},
 	},
 }
