@@ -16,6 +16,7 @@ return {
 				"css",
 				"html",
 				"http",
+				"hurl",
 				"json",
 				"jsonc",
 				"lua",
