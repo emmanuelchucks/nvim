@@ -130,4 +130,17 @@ return {
 			})
 		end,
 	},
+
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		build = "make",
+		opts = {
+			hints = { enabled = false },
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+	},
 }
