@@ -123,9 +123,8 @@ return {
 			local wk = require("which-key")
 
 			wk.add({
-				-- Run API request
-				{ "<leader>rr", "<cmd>HurlRunner<CR>", desc = "Run API request" },
-				{ "<leader>rR", "<cmd>HurlRunnerAt<CR>", desc = "Run all API requests" },
+				{ "<leader>rr", "<cmd>HurlRunnerAt<CR>", desc = "Run API request" },
+				{ "<leader>rR", "<cmd>HurlRunner<CR>", desc = "Run all API requests" },
 				{ "<leader>rv", "<cmd>HurlVerbose<CR>", desc = "Run API in verbose mode" },
 			})
 		end,
