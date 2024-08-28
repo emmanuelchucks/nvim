@@ -133,7 +133,6 @@ return {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
-		build = "make",
 		opts = {
 			hints = { enabled = false },
 		},
