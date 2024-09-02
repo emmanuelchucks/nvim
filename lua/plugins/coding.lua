@@ -134,12 +134,20 @@ return {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
-		opts = {
-			hints = { enabled = false },
-		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 		},
+		config = function()
+			require("avante").setup({
+				hints = { enabled = false },
+			})
+
+			local wk = require("which-key")
+
+			wk.add({
+				{ "<leader>a", group = "Avante" },
+			})
+		end,
 	},
 }
