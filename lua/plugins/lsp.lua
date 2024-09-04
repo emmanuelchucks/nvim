@@ -49,8 +49,9 @@ local servers = {
 			},
 		},
 	},
-	tsserver = {},
 	biome = {},
+	tsserver = {},
+	rust_analyzer = {},
 }
 
 return {

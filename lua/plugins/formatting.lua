@@ -13,8 +13,8 @@ return {
 			json = { "biome-check" },
 			jsonc = { "biome-check" },
 			lua = { "stylua" },
+			rust = { "rustfmt" },
 		},
-
 		format_on_save = {
 			timeout_ms = 500,
 			lsp_fallback = true,
