@@ -63,11 +63,11 @@ return {
 		opts = {
 			log_level = "off",
 			ignore_filetypes = {
-				gitcommit = true,
-				gitrebase = true,
-				markdown = true,
-				help = true,
-				text = true,
+				"gitcommit",
+				"gitrebase",
+				"markdown ",
+				"help",
+				"text",
 			},
 		},
 	},
@@ -134,6 +134,7 @@ return {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
+		build = ":AvanteBuild source=false",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
