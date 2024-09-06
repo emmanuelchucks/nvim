@@ -71,6 +71,7 @@ local on_attach = function(bufnr)
 
 			{
 				mode = "v",
+				{ "<leader>h", group = "Hunk" },
 				{
 					"<leader>hs",
 					function()
