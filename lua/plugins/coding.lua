@@ -147,7 +147,10 @@ return {
 			local wk = require("which-key")
 
 			wk.add({
-				{ "<leader>a", group = "Avante" },
+				{
+					mode = { "n", "v" },
+					{ "<leader>a", group = "Avante" },
+				},
 			})
 		end,
 	},
