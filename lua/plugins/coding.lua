@@ -134,15 +134,14 @@ return {
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
-		build = ":AvanteBuild source=false",
+		build = "make",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
 		},
 		config = function()
-			require("avante").setup({
-				hints = { enabled = false },
-			})
+			require("avante").setup()
+			require("avante_lib").load()
 
 			local wk = require("which-key")
 
