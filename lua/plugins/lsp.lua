@@ -10,6 +10,14 @@ local servers = {
 			},
 		},
 	},
+	yamlls = {
+		settings = {
+			yaml = {
+				schemas = require("schemastore").yaml.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -50,6 +58,7 @@ local servers = {
 		},
 	},
 	biome = {},
+	stylua = {},
 	tsserver = {},
 	rust_analyzer = {},
 }
@@ -129,16 +138,9 @@ return {
 
 			require("mason").setup()
 			require("mason-tool-installer").setup({
-				ensure_installed = vim.tbl_extend(
-					"force",
-					vim.tbl_filter(function(server_name)
-						return server_name ~= "tsserver"
-					end, vim.tbl_keys(servers)),
-					{
-						"stylua",
-						"biome",
-					}
-				),
+				ensure_installed = vim.tbl_filter(function(server_name)
+					return server_name ~= "tsserver"
+				end, vim.tbl_keys(servers)),
 			})
 
 			require("mason-lspconfig").setup({
