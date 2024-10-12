@@ -59,6 +59,7 @@ local servers = {
 	},
 	biome = {},
 	stylua = {},
+	taplo = {},
 	ts_ls = {},
 	rust_analyzer = {},
 }
