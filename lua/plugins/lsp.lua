@@ -59,7 +59,7 @@ local servers = {
 	},
 	biome = {},
 	stylua = {},
-	tsserver = {},
+	ts_ls = {},
 	rust_analyzer = {},
 }
 
@@ -83,13 +83,6 @@ return {
 			-- Additional lua configuration, makes nvim stuff amazing!
 			{
 				"folke/neodev.nvim",
-				opts = {},
-			},
-
-			-- Advanced Typescript LSP
-			-- https://github.com/pmizio/typescript-tools.nvim
-			{
-				"pmizio/typescript-tools.nvim",
 				opts = {},
 			},
 		},
@@ -138,9 +131,7 @@ return {
 
 			require("mason").setup()
 			require("mason-tool-installer").setup({
-				ensure_installed = vim.tbl_filter(function(server_name)
-					return server_name ~= "tsserver"
-				end, vim.tbl_keys(servers)),
+				ensure_installed = vim.tbl_keys(servers),
 			})
 
 			require("mason-lspconfig").setup({
@@ -148,12 +139,6 @@ return {
 					function(server_name)
 						local server = servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
-
-						if server_name == "tsserver" then
-							require("typescript-tools").setup(server)
-							return
-						end
-
 						require("lspconfig")[server_name].setup(server)
 					end,
 				},
