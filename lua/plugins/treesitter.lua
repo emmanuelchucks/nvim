@@ -34,18 +34,9 @@ return {
 		})
 
 		-- Support mdx files
-		vim.filetype.add({
-			extension = {
-				mdx = "markdown.mdx",
-			},
-		})
+		vim.filetype.add({ extension = { mdx = "markdown.mdx" } })
 
-		-- Support environment variables
-		vim.filetype.add({
-			extension = {
-				vars = "sh",
-				["local"] = "sh",
-			},
-		})
+		-- Support environment variables (.dev.vars)
+		vim.filetype.add({ extension = { vars = "sh" } })
 	end,
 }
