@@ -58,6 +58,7 @@ local servers = {
 		},
 	},
 	biome = {},
+	prettierd = {},
 	stylua = {},
 	taplo = {},
 	ts_ls = {},
