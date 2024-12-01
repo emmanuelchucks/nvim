@@ -12,7 +12,7 @@ return {
 			typescriptreact = { "biome-check" },
 			json = { "biome-check" },
 			jsonc = { "biome-check" },
-			css = { "prettierd" },
+			css = { "biome-check" },
 			markdown = { "prettierd" },
 			yaml = { "prettierd" },
 			lua = { "stylua" },
