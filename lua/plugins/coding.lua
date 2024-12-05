@@ -14,6 +14,7 @@ return {
 			require("mini.misc").setup_restore_cursor()
 
 			local spec_treesitter = require("mini.ai").gen_spec.treesitter
+			local wk = require("which-key")
 
 			require("mini.ai").setup({
 				n_lines = 500,
@@ -35,8 +36,19 @@ return {
 				},
 			})
 
-			require("which-key").add({
+			wk.add({
 				{ toggle_key, group = "Toggle" },
+			})
+
+			wk.add({
+				{ "<leader>s", group = "Sessions" },
+				{ "<leader>sr", "<cmd>lua MiniSessions.select('read')<cr>", desc = "Read session" },
+				{ "<leader>sd", "<cmd>lua MiniSessions.select('delete')<cr>", desc = "Delete session" },
+				{
+					"<leader>sw",
+					"<cmd>lua MiniSessions.write(vim.fn.input('Session name: '))<cr>",
+					desc = "Write session",
+				},
 			})
 		end,
 	},
