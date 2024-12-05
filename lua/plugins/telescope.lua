@@ -51,13 +51,6 @@ return {
 			{ "<leader>fk", builtin.keymaps, desc = "Find keymaps" },
 			{ "<leader>fo", builtin.oldfiles, desc = "Find recent files" },
 			{
-				"<leader>fs",
-				function()
-					require("mini.sessions").select()
-				end,
-				desc = "Find session",
-			},
-			{
 				"<leader>ff",
 				function()
 					if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
