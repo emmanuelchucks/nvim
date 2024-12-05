@@ -3,10 +3,12 @@
 
 return {
 	"mfussenegger/nvim-dap",
-	lazy = true,
 	dependencies = {
 		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",
+
+		-- Required dependency for nvim-dap-ui
+		"nvim-neotest/nvim-nio",
 
 		-- Shows virtual text for the current line's breakpoints
 		{ "theHamsta/nvim-dap-virtual-text", opts = {} },
@@ -78,8 +80,8 @@ return {
 					name = "Launch (Node)",
 					program = "${file}",
 					cwd = "${workspaceFolder}",
-					runtimeExecutable = "bunx",
-					runtimeArgs = { "tsx" },
+					runtimeExecutable = "node",
+					runtimeArgs = { "--experimental-strip-types" },
 				},
 				{
 					type = "pwa-chrome",
