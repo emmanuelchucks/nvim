@@ -18,6 +18,9 @@ return {
 				{ "<leader>w", proxy = "<c-w>", group = "Windows" },
 				{ "<leader>b", expand = extras.expand.buf, group = "Buffers" },
 				{ "<leader>e", vim.diagnostic.open_float, desc = "Open floating diagnostic message" },
+				{ "<leader><space>x", "<cmd>source %<cr>", desc = "Reload current file" },
+				{ "<leader>x", ":.lua<cr>", desc = "Reload current line" },
+				{ "<leader>x", ":lua<cr>", desc = "Reload current line", mode = "v" },
 			},
 			triggers = {
 				{ "<auto>", mode = "nixsotc" },
