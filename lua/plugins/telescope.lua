@@ -1,6 +1,57 @@
 -- telescope.lua
 --
 
+local live_multigrep = function(opts)
+	local pickers = require("telescope.pickers")
+	local finders = require("telescope.finders")
+	local sorters = require("telescope.sorters")
+	local config = require("telescope.config")
+	local make_entry = require("telescope.make_entry")
+
+	opts = opts or {}
+	opts.cwd = opts.cwd or vim.fn.getcwd()
+
+	pickers
+		.new(opts, {
+			debounce = 100,
+			prompt_title = "Live Multi Grep",
+			previewer = config.values.grep_previewer(opts),
+			sorters = sorters.empty(),
+			finder = finders.new_async_job({
+				cwd = opts.cwd,
+				entry_maker = make_entry.gen_from_vimgrep(opts),
+				command_generator = function(prompt)
+					if not prompt or prompt == "" then
+						return nil
+					end
+
+					local pieces = vim.split(prompt, "  ")
+					local args = { "rg" }
+
+					if pieces[1] then
+						table.insert(args, "-e")
+						table.insert(args, pieces[1])
+					end
+
+					if pieces[2] then
+						table.insert(args, "-g")
+						table.insert(args, pieces[2])
+					end
+
+					return vim.list_extend(args, {
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+					})
+				end,
+			}),
+		})
+		:find()
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
@@ -40,7 +91,7 @@ return {
 			{ "<leader><space>", builtin.buffers, desc = "Find buffers" },
 
 			{ "<leader>f", group = "Find" },
-			{ "<leader>f/", builtin.live_grep, desc = "Find by grep" },
+			{ "<leader>f/", live_multigrep, desc = "Find by grep" },
 			{ "<leader>f*", builtin.grep_string, desc = "Find word under cursor" },
 			{ "<leader>fb", builtin.builtin, desc = "Find builtins" },
 			{ "<leader>fc", builtin.commands, desc = "Find commands" },
