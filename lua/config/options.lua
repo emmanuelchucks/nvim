@@ -17,7 +17,10 @@ vim.o.scrolloff = 8
 -- Reduce default tab stop
 vim.o.tabstop = 4
 
--- Tailwind
+-- Tailwind CSS
 vim.o.wrap = true
+
+-- Avante
+vim.opt.laststatus = 3
 
 return {}
