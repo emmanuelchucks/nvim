@@ -2,56 +2,6 @@
 --
 
 return {
-	{
-		"echasnovski/mini.nvim",
-		config = function()
-			require("mini.statusline").setup()
-			require("mini.bracketed").setup()
-			require("mini.move").setup()
-			require("mini.sessions").setup()
-			require("mini.starter").setup()
-			require("mini.surround").setup()
-			require("mini.misc").setup_restore_cursor()
-
-			local spec_treesitter = require("mini.ai").gen_spec.treesitter
-			local wk = require("which-key")
-
-			require("mini.ai").setup({
-				n_lines = 500,
-				custom_textobjects = {
-					f = spec_treesitter({ a = "@function.outer", i = "@function.inner" }),
-					o = spec_treesitter({
-						a = { "@conditional.outer", "@loop.outer" },
-						i = { "@conditional.inner", "@loop.inner" },
-					}),
-				},
-			})
-
-			local toggle_key = "t"
-
-			require("mini.basics").setup({
-				mappings = {
-					move_with_alt = true,
-					option_toggle_prefix = toggle_key,
-				},
-			})
-
-			wk.add({
-				{ toggle_key, group = "Toggle" },
-			})
-
-			wk.add({
-				{ "<leader>s", group = "Sessions" },
-				{ "<leader>sr", "<cmd>lua MiniSessions.select('read')<cr>", desc = "Read session" },
-				{ "<leader>sd", "<cmd>lua MiniSessions.select('delete')<cr>", desc = "Delete session" },
-				{
-					"<leader>sw",
-					"<cmd>lua MiniSessions.write(vim.fn.input('Session name: '))<cr>",
-					desc = "Write session",
-				},
-			})
-		end,
-	},
 
 	{
 		"windwp/nvim-autopairs",
@@ -71,13 +21,33 @@ return {
 	},
 
 	{
+		"davidmh/mdx.nvim",
+		ft = "markdown.mdx",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
+
+	{
+		"tpope/vim-dadbod",
+		dependencies = {
+			"kristijanhusak/vim-dadbod-ui",
+			"kristijanhusak/vim-dadbod-completion",
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+	},
+
+	{
 		"supermaven-inc/supermaven-nvim",
 		opts = {
 			log_level = "off",
 			ignore_filetypes = {
 				"gitcommit",
 				"gitrebase",
-				"markdown ",
+				"markdown",
 				"help",
 				"text",
 			},
@@ -141,48 +111,5 @@ return {
 				{ "<leader>rv", "<cmd>HurlVerbose<cr>", desc = "Run API request (verbose mode)" },
 			})
 		end,
-	},
-
-	{
-		"yetone/avante.nvim",
-		event = "VeryLazy",
-		build = "make",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-		},
-		config = function()
-			require("avante").setup()
-			require("avante_lib").load()
-
-			local wk = require("which-key")
-
-			wk.add({
-				{
-					mode = { "n", "v" },
-					{ "<leader>a", group = "Avante" },
-				},
-			})
-		end,
-	},
-
-	{
-		"tpope/vim-dadbod",
-		dependencies = {
-			"kristijanhusak/vim-dadbod-ui",
-			"kristijanhusak/vim-dadbod-completion",
-		},
-		cmd = {
-			"DBUI",
-			"DBUIToggle",
-			"DBUIAddConnection",
-			"DBUIFindBuffer",
-		},
-	},
-
-	{
-		"davidmh/mdx.nvim",
-		ft = "markdown.mdx",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 }
