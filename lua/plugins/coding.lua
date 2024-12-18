@@ -2,7 +2,6 @@
 --
 
 return {
-
 	{
 		"windwp/nvim-autopairs",
 		event = { "InsertEnter" },
@@ -18,6 +17,11 @@ return {
 	{
 		"b0o/schemastore.nvim",
 		ft = "json",
+	},
+
+	{
+		"stevearc/oil.nvim",
+		opts = {},
 	},
 
 	{
