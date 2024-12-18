@@ -6,7 +6,6 @@ return {
 	event = "VeryLazy",
 	build = "make",
 	dependencies = {
-		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
@@ -31,9 +30,9 @@ return {
 			-- Make sure to set this up properly if you have lazy=true
 			"MeanderingProgrammer/render-markdown.nvim",
 			opts = {
-				file_types = { "markdown", "Avante" },
+				file_types = { "Avante" },
 			},
-			ft = { "markdown", "Avante" },
+			ft = { "Avante" },
 		},
 	},
 	config = function()
