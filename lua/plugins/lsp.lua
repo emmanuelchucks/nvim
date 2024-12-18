@@ -60,7 +60,6 @@ local servers = {
 			},
 		},
 	},
-	biome = {},
 	prettierd = {},
 	stylua = {},
 	taplo = {},
