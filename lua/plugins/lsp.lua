@@ -60,6 +60,7 @@ local servers = {
 			},
 		},
 	},
+	mdx_analyzer = {},
 	prettierd = {},
 	stylua = {},
 	taplo = {},
