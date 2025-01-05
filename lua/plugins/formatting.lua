@@ -14,6 +14,7 @@ return {
 			jsonc = { "biome-check" },
 			css = { "biome-check" },
 			markdown = { "prettierd" },
+			mdx = { "prettierd" },
 			yaml = { "prettierd" },
 			lua = { "stylua" },
 			rust = { "rustfmt" },

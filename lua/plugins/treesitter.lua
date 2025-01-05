@@ -33,9 +33,6 @@ return {
 			indent = { enable = true },
 		})
 
-		-- Support mdx files
-		vim.filetype.add({ extension = { mdx = "markdown.mdx" } })
-
 		-- Support environment variables (.dev.vars)
 		vim.filetype.add({ extension = { vars = "sh" } })
 	end,
