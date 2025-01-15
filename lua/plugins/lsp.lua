@@ -60,11 +60,15 @@ local servers = {
 			},
 		},
 	},
+	vtsls = {
+		settings = {
+			vtsls = { autoUseWorkspaceTsdk = true },
+		},
+	},
 	mdx_analyzer = {},
 	prettierd = {},
 	stylua = {},
 	taplo = {},
-	ts_ls = {},
 	rust_analyzer = {},
 }
 
@@ -89,6 +93,11 @@ return {
 			{
 				"folke/neodev.nvim",
 				opts = {},
+			},
+
+			{
+				-- TypeScript language server extras
+				"yioneko/nvim-vtsls",
 			},
 		},
 	},
@@ -119,6 +128,7 @@ return {
 							{ "<leader>c", group = "Code" },
 							{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
 							{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code actions" },
+							{ "<leader>cv", "<cmd>VtsExec source_actions<cr>", desc = "Code actions (vtsls)" },
 
 							{ "<leader>g", group = "Goto" },
 							{ "<leader>gd", builtin.lsp_definitions, desc = "Go to definition" },
