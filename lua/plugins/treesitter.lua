@@ -33,7 +33,8 @@ return {
 			indent = { enable = true },
 		})
 
-		-- Support environment variables (.dev.vars)
+		-- Support dotenv files
 		vim.filetype.add({ extension = { vars = "sh" } })
+		vim.filetype.add({ pattern = { [".env.*"] = "sh" } })
 	end,
 }
