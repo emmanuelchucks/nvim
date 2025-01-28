@@ -106,77 +106,77 @@ return {
 					function()
 						require("avante.api").ask({ question = avante_grammar_correction })
 					end,
-					desc = "Grammar Correction (ask)",
+					desc = "avante: ask (grammar correction)",
 				},
 				{
 					"<leader>ak",
 					function()
 						require("avante.api").ask({ question = avante_keywords })
 					end,
-					desc = "Keywords (ask)",
+					desc = "avante: ask (keywords)",
 				},
 				{
 					"<leader>al",
 					function()
 						require("avante.api").ask({ question = avante_code_readability_analysis })
 					end,
-					desc = "Code Readability Analysis (ask)",
+					desc = "avante: ask (code readability analysis)",
 				},
 				{
 					"<leader>ao",
 					function()
 						require("avante.api").ask({ question = avante_optimize_code })
 					end,
-					desc = "Optimize Code (ask)",
+					desc = "avante: ask (optimize code)",
 				},
 				{
 					"<leader>am",
 					function()
 						require("avante.api").ask({ question = avante_summarize })
 					end,
-					desc = "Summarize text (ask)",
+					desc = "avante: ask (summarize text)",
 				},
 				{
 					"<leader>an",
 					function()
 						require("avante.api").ask({ question = avante_translate })
 					end,
-					desc = "Translate text (ask)",
+					desc = "avante: ask (translate text)",
 				},
 				{
 					"<leader>ax",
 					function()
 						require("avante.api").ask({ question = avante_explain_code })
 					end,
-					desc = "Explain Code (ask)",
+					desc = "avante: ask (explain code)",
 				},
 				{
 					"<leader>ac",
 					function()
 						require("avante.api").ask({ question = avante_complete_code })
 					end,
-					desc = "Complete Code (ask)",
+					desc = "avante: ask (complete code)",
 				},
 				{
 					"<leader>ad",
 					function()
 						require("avante.api").ask({ question = avante_add_docstring })
 					end,
-					desc = "Docstring (ask)",
+					desc = "avante: ask (docstring)",
 				},
 				{
 					"<leader>ab",
 					function()
 						require("avante.api").ask({ question = avante_fix_bugs })
 					end,
-					desc = "Fix Bugs (ask)",
+					desc = "avante: ask (fix bugs)",
 				},
 				{
 					"<leader>au",
 					function()
 						require("avante.api").ask({ question = avante_add_tests })
 					end,
-					desc = "Add Tests (ask)",
+					desc = "avante: ask (add tests)",
 				},
 			},
 		})
@@ -190,49 +190,49 @@ return {
 					function()
 						prefill_edit_window(avante_grammar_correction)
 					end,
-					desc = "Grammar Correction",
+					desc = "avante: edit (grammar correction)",
 				},
 				{
 					"<leader>aK",
 					function()
 						prefill_edit_window(avante_keywords)
 					end,
-					desc = "Keywords",
+					desc = "avante: edit (keywords)",
 				},
 				{
 					"<leader>aO",
 					function()
 						prefill_edit_window(avante_optimize_code)
 					end,
-					desc = "Optimize Code (edit)",
+					desc = "avante: edit (optimize code)",
 				},
 				{
 					"<leader>aC",
 					function()
 						prefill_edit_window(avante_complete_code)
 					end,
-					desc = "Complete Code (edit)",
+					desc = "avante: edit (complete code)",
 				},
 				{
 					"<leader>aD",
 					function()
 						prefill_edit_window(avante_add_docstring)
 					end,
-					desc = "Docstring (edit)",
+					desc = "avante: edit (docstring)",
 				},
 				{
 					"<leader>aB",
 					function()
 						prefill_edit_window(avante_fix_bugs)
 					end,
-					desc = "Fix Bugs (edit)",
+					desc = "avante: edit (fix bugs)",
 				},
 				{
 					"<leader>aU",
 					function()
 						prefill_edit_window(avante_add_tests)
 					end,
-					desc = "Add Tests (edit)",
+					desc = "avante: edit (add tests)",
 				},
 			},
 		})
