@@ -18,4 +18,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
+-- Hide line numbers when in a terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = augroup("hide_numbers"),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+	end,
+})
+
 return {}
