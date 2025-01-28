@@ -105,9 +105,7 @@ return {
 				"<leader>ff",
 				function()
 					if vim.fn.glob(vim.fn.getcwd() .. "/.git") ~= "" then
-						builtin.git_files({
-							show_untracked = true,
-						})
+						builtin.git_files({ show_untracked = true })
 					else
 						builtin.find_files()
 					end
