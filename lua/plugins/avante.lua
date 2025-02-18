@@ -6,6 +6,7 @@ return {
 	event = "VeryLazy",
 	build = "make",
 	dependencies = {
+		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
@@ -37,13 +38,12 @@ return {
 	},
 	config = function()
 		require("avante").setup({
-			provider = "openrouter",
 			vendors = {
 				openrouter = {
 					__inherited_from = "openai",
-					api_key_name = "OPENROUTER_API_KEY",
 					endpoint = "https://openrouter.ai/api/v1",
-					model = "deepseek/deepseek-chat",
+					api_key_name = "OPENROUTER_API_KEY",
+					model = "deepseek/deepseek-r1",
 				},
 			},
 			behaviour = {
