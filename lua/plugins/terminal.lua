@@ -1,38 +1,6 @@
 -- terminal.lua
 --
 
-local last_term_buf = nil
-local float_win = nil
-
-local toggle_floating_term = function()
-	if float_win and vim.api.nvim_win_is_valid(float_win) then
-		-- Hide floating window if it exists
-		vim.api.nvim_win_close(float_win, true)
-		float_win = nil
-		if last_term_buf then
-			vim.api.nvim_set_current_buf(last_term_buf)
-		end
-		return
-	end
-
-	-- Use current buffer in floating window
-	local current_buf = vim.api.nvim_get_current_buf()
-	last_term_buf = current_buf
-
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
-
-	float_win = vim.api.nvim_open_win(current_buf, true, {
-		relative = "editor",
-		width = width,
-		height = height,
-		col = math.floor((vim.o.columns - width) / 2),
-		row = math.floor((vim.o.lines - height) / 2),
-		style = "minimal",
-		border = "rounded",
-	})
-end
-
 local terminal_buffers = {}
 local terminal_windows = {}
 
@@ -94,7 +62,6 @@ local wk = require("which-key")
 
 wk.add({
 	{ "<leader>tt", toggle_terminals, desc = "Toggle terminals" },
-	{ "<leader>tf", toggle_floating_term, desc = "Toggle floating terminal" },
 	{ "<esc><esc>", "<c-\\><c-n>", desc = "Escape to normal mode", mode = "t", hidden = true },
 })
 
