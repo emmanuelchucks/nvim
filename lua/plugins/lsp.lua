@@ -67,8 +67,8 @@ local servers = {
 	},
 	mdx_analyzer = {},
 	prettierd = {},
+	eslint_d = {},
 	stylua = {},
-	taplo = {},
 	rust_analyzer = {},
 }
 
