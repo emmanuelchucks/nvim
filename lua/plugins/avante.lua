@@ -46,9 +46,6 @@ return {
 					model = "deepseek/deepseek-r1",
 				},
 			},
-			behaviour = {
-				auto_suggestions = false,
-			},
 		})
 
 		require("avante_lib").load()

@@ -38,8 +38,6 @@ return {
 		opts = {
 			log_level = "off",
 			ignore_filetypes = {
-				"gitcommit",
-				"gitrebase",
 				"markdown",
 				"help",
 				"text",
