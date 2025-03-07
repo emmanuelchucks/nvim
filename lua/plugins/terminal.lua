@@ -65,4 +65,13 @@ wk.add({
 	{ "<esc><esc>", "<c-\\><c-n>", desc = "Escape to normal mode", mode = "t", hidden = true },
 })
 
+-- Hide line numbers when in a terminal
+vim.api.nvim_create_autocmd("TermOpen", {
+	group = vim.api.nvim_create_augroup("hide-numbers", { clear = true }),
+	callback = function()
+		vim.opt.number = false
+		vim.opt.relativenumber = false
+	end,
+})
+
 return {}
