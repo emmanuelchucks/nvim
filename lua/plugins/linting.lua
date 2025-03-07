@@ -6,11 +6,16 @@ return {
 	event = { "BufReadPost", "BufWritePost", "InsertLeave", "TextChanged" },
 	config = function()
 		require("lint").linters_by_ft = {
-			javascript = { "eslint_d" },
-			javascriptreact = { "eslint_d" },
-			typescript = { "eslint_d" },
-			typescriptreact = { "eslint_d" },
-			css = { "eslint_d" },
+			javascript = { "eslint" },
+			javascriptreact = { "eslint" },
+			typescript = { "eslint" },
+			typescriptreact = { "eslint" },
+			css = { "eslint" },
 		}
+
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = vim.api.nvim_create_augroup("eslint-fix-on-save", { clear = true }),
+			command = "EslintFixAll",
+		})
 	end,
 }
