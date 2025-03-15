@@ -15,6 +15,7 @@ return {
 
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = vim.api.nvim_create_augroup("eslint-fix-on-save", { clear = true }),
+			pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
 			command = "EslintFixAll",
 		})
 	end,
