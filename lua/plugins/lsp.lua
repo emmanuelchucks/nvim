@@ -67,6 +67,7 @@ local servers = {
 	},
 	mdx_analyzer = {},
 	prettierd = {},
+	eslint = {},
 	stylua = {},
 	rust_analyzer = {},
 }
