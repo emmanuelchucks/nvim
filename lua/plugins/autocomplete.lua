@@ -2,106 +2,91 @@
 --
 
 return {
-	"hrsh7th/nvim-cmp",
-	event = { "InsertEnter" },
+	"saghen/blink.cmp",
 	dependencies = {
-		-- Snippet Engine & its associated nvim-cmp source
-		{
-			"L3MON4D3/LuaSnip",
-			build = (function()
-				-- Build Step is needed for regex support in snippets
-				-- This step is not supported in many windows environments
-				-- Remove the below condition to re-enable on windows
-				if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-					return
-				end
-				return "make install_jsregexp"
-			end)(),
-		},
-		"saadparwaiz1/cmp_luasnip",
-
-		-- Completion sources
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
-		"hrsh7th/cmp-cmdline",
-		{ "petertriho/cmp-git", opts = {} },
-
-		-- Adds a number of user-friendly snippets
+		"Kaiser-Yang/blink-cmp-avante",
 		"rafamadriz/friendly-snippets",
+		"Kaiser-Yang/blink-cmp-git",
+		"mikavilpas/blink-ripgrep.nvim",
+		{
+			"kristijanhusak/vim-dadbod-completion",
+			ft = { "sql", "mysql", "plsql" },
+			lazy = true,
+		},
 	},
-	config = function()
-		local cmp = require("cmp")
-		local luasnip = require("luasnip")
-
-		require("luasnip.loaders.from_vscode").lazy_load()
-		luasnip.config.setup()
-
-		cmp.setup({
-			snippet = {
-				expand = function(args)
-					luasnip.lsp_expand(args.body)
-				end,
+	-- use a release tag to download pre-built binaries
+	version = "1.*",
+	---@module 'blink.cmp'
+	---@type blink.cmp.Config
+	opts = {
+		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+		-- 'super-tab' for mappings similar to vscode (tab to accept)
+		-- 'enter' for enter to accept
+		-- 'none' for no mappings
+		--
+		-- All presets have the following mappings:
+		-- C-space: Open menu or open docs if already open
+		-- C-n/C-p or Up/Down: Select next/previous item
+		-- C-e: Hide menu
+		-- C-k: Toggle signature help (if signature.enabled = true)
+		--
+		-- See :h blink-cmp-config-keymap for defining your own keymap
+		keymap = {
+			preset = "default",
+		},
+		appearance = {
+			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- Adjusts spacing to ensure icons are aligned
+			nerd_font_variant = "mono",
+		},
+		sources = {
+			default = {
+				"avante",
+				"git",
+				"lsp",
+				"path",
+				"snippets",
+				"buffer",
+				"ripgrep",
 			},
-			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
-			}, {
-				{ name = "buffer" },
-				{ name = "path" },
-			}),
-			mapping = cmp.mapping.preset.insert({
-				["<c-space>"] = cmp.mapping.complete(),
-				["<cr>"] = cmp.mapping.confirm({ select = true }),
-				-- <c-l> will move you to the right of each of the expansion locations.
-				["<c-l>"] = cmp.mapping(function()
-					if luasnip.expand_or_locally_jumpable() then
-						luasnip.expand_or_jump()
-					end
-				end, { "i", "s" }),
-				-- <c-h> is similar, except moving you backwards.
-				["<c-h>"] = cmp.mapping(function()
-					if luasnip.locally_jumpable(-1) then
-						luasnip.jump(-1)
-					end
-				end, { "i", "s" }),
-			}),
-		})
-
-		-- Set configuration for specific filetype.
-		cmp.setup.filetype("gitcommit", {
-			sources = cmp.config.sources({
-				{ name = "git" },
-				{ name = "luasnip" },
-			}, {
-				{ name = "buffer" },
-			}),
-		})
-
-		cmp.setup.filetype("sql", {
-			sources = cmp.config.sources({
-				{ name = "vim-dadbod-completion" },
-			}, {
-				{ name = "buffer" },
-			}),
-		})
-
-		-- Use buffer source for `/` and `?`
-		cmp.setup.cmdline({ "/", "?" }, {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = {
-				{ name = "buffer" },
+			per_filetype = {
+				sql = {
+					"snippets",
+					"dadbod",
+					"buffer",
+				},
 			},
-		})
-
-		-- Use cmdline & path source for ':'
-		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				{ name = "path" },
-			}, {
-				{ name = "cmdline", keyword_length = 4 },
-			}),
-		})
-	end,
+			providers = {
+				avante = {
+					module = "blink-cmp-avante",
+					name = "Avante",
+					opts = {
+						-- options for blink-cmp-avante
+					},
+				},
+				dadbod = {
+					module = "vim_dadbod_completion.blink",
+					name = "Dadbod",
+				},
+				git = {
+					module = "blink-cmp-git",
+					name = "Git",
+					opts = {
+						-- options for the blink-cmp-git
+					},
+				},
+				ripgrep = {
+					module = "blink-ripgrep",
+					name = "Ripgrep",
+					-- the options below are optional, some default values are shown
+					---@module "blink-ripgrep"
+					---@type blink-ripgrep.Options
+					opts = {},
+				},
+			},
+		},
+	},
+	opts_extend = {
+		"sources.default",
+	},
 }
