@@ -9,7 +9,6 @@ return {
 		"stevearc/dressing.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
-		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 		{
 			-- support for image pasting
 			"HakonHarnes/img-clip.nvim",
