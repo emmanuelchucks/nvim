@@ -5,9 +5,9 @@ return {
 	"saghen/blink.cmp",
 	dependencies = {
 		"Kaiser-Yang/blink-cmp-avante",
-		"rafamadriz/friendly-snippets",
 		"Kaiser-Yang/blink-cmp-git",
 		"mikavilpas/blink-ripgrep.nvim",
+		"rafamadriz/friendly-snippets",
 		{
 			"kristijanhusak/vim-dadbod-completion",
 			ft = { "sql", "mysql", "plsql" },
@@ -32,7 +32,7 @@ return {
 		--
 		-- See :h blink-cmp-config-keymap for defining your own keymap
 		keymap = {
-			preset = "default",
+			preset = "enter",
 		},
 		appearance = {
 			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -42,12 +42,12 @@ return {
 		sources = {
 			default = {
 				"avante",
-				"git",
 				"lsp",
 				"path",
 				"snippets",
 				"buffer",
 				"ripgrep",
+				"git",
 			},
 			per_filetype = {
 				sql = {
