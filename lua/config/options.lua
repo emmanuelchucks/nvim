@@ -20,7 +20,4 @@ vim.o.tabstop = 4
 -- Tailwind CSS
 vim.o.wrap = true
 
--- Avante
-vim.opt.laststatus = 3
-
 return {}

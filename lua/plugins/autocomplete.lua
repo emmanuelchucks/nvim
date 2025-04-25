@@ -4,7 +4,6 @@
 return {
 	"saghen/blink.cmp",
 	dependencies = {
-		"Kaiser-Yang/blink-cmp-avante",
 		"Kaiser-Yang/blink-cmp-git",
 		"mikavilpas/blink-ripgrep.nvim",
 		"rafamadriz/friendly-snippets",
@@ -41,7 +40,6 @@ return {
 		},
 		sources = {
 			default = {
-				"avante",
 				"lsp",
 				"path",
 				"snippets",
@@ -57,13 +55,6 @@ return {
 				},
 			},
 			providers = {
-				avante = {
-					module = "blink-cmp-avante",
-					name = "Avante",
-					opts = {
-						-- options for blink-cmp-avante
-					},
-				},
 				dadbod = {
 					module = "vim_dadbod_completion.blink",
 					name = "Dadbod",
