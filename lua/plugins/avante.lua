@@ -78,6 +78,14 @@ return {
 			},
 			ft = { "Avante" },
 		},
+		{
+			"ravitemer/mcphub.nvim",
+			build = "bundled_build.lua",
+			opts = {
+				use_bundled_binary = true,
+				auto_approve = true,
+			},
+		},
 	},
 	config = function()
 		require("avante").setup({
@@ -89,6 +97,30 @@ return {
 					model = "deepseek/deepseek-r1",
 				},
 			},
+			disabled_tools = {
+				"list_files",
+				"search_files",
+				"read_file",
+				"create_file",
+				"rename_file",
+				"delete_file",
+				"create_dir",
+				"rename_dir",
+				"delete_dir",
+				"bash",
+			},
+			system_prompt = function()
+				local hub = require("mcphub").get_hub_instance()
+
+				if hub ~= "" then
+					return hub:get_active_servers_prompt()
+				end
+			end,
+			custom_tools = function()
+				return {
+					require("mcphub.extensions.avante").mcp_tool(),
+				}
+			end,
 		})
 
 		require("avante_lib").load()
