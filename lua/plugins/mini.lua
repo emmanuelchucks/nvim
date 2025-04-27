@@ -16,7 +16,6 @@ return {
 		require("mini.misc").setup_restore_cursor()
 
 		local spec_treesitter = require("mini.ai").gen_spec.treesitter
-		local wk = require("which-key")
 
 		require("mini.ai").setup({
 			n_lines = 500,
@@ -37,6 +36,8 @@ return {
 				option_toggle_prefix = toggle_key,
 			},
 		})
+
+		local wk = require("which-key")
 
 		wk.add({
 			{ toggle_key, group = "Toggle" },
