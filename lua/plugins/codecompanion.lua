@@ -16,8 +16,6 @@ return {
 			opts = {
 				use_bundled_binary = true,
 				auto_approve = true,
-				make_vars = true,
-				make_slash_commands = true,
 			},
 		},
 	},
@@ -25,9 +23,20 @@ return {
 		vim.g.codecompanion_auto_tool_mode = true
 
 		require("codecompanion").setup({
+			adapters = {
+				gemini = function()
+					return require("codecompanion.adapters").extend("gemini", {
+						schema = {
+							model = {
+								default = "gemini-2.5-pro-exp-03-25",
+							},
+						},
+					})
+				end,
+			},
 			strategies = {
 				chat = {
-					adapter = "anthropic",
+					adapter = "gemini",
 					tools = {
 						["mcp"] = {
 							callback = function()
@@ -38,7 +47,7 @@ return {
 					},
 				},
 				inline = {
-					adapter = "anthropic",
+					adapter = "gemini",
 				},
 			},
 		})
