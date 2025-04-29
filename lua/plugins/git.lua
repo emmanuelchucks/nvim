@@ -103,13 +103,6 @@ return {
 		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			on_attach = on_attach,
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
 			signs_staged_enable = false,
 		},
 	},
