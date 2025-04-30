@@ -26,11 +26,6 @@ return {
 			extensions = {
 				mcphub = {
 					callback = "mcphub.extensions.codecompanion",
-					opts = {
-						show_result_in_chat = true,
-						make_vars = true,
-						make_slash_commands = true,
-					},
 				},
 			},
 			adapters = {
@@ -38,7 +33,7 @@ return {
 					return require("codecompanion.adapters").extend("gemini", {
 						schema = {
 							model = {
-								default = "gemini-2.5-pro-exp-03-25",
+								default = "gemini-2.5-pro-preview-03-25",
 							},
 						},
 					})
