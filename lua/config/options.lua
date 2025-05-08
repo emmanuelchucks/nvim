@@ -15,7 +15,7 @@ vim.o.confirm = true
 vim.o.scrolloff = 8
 
 -- Reduce default tab stop
-vim.o.tabstop = 4
+vim.o.tabstop = 2
 
 -- Tailwind CSS
 vim.o.wrap = true
