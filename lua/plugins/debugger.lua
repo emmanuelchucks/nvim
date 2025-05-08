@@ -3,7 +3,7 @@
 
 return {
 	"mfussenegger/nvim-dap",
-	event = "VeryLazy",
+	event = { "VeryLazy" },
 	dependencies = {
 		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",

@@ -10,15 +10,19 @@ return {
 			require("onedark").setup({
 				transparent = true,
 			})
+
 			vim.cmd.colorscheme("onedark")
 		end,
+	},
+
+	{
+		"tpope/vim-sleuth",
 	},
 
 	{
 		-- Add indentation guides even on blank lines
 		-- See `:help ibl`
 		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		main = "ibl",
 		opts = {},
 	},

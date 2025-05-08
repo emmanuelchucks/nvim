@@ -21,19 +21,10 @@ local servers = {
 	lua_ls = {
 		settings = {
 			Lua = {
-				runtime = { version = "LuaJIT" },
-				workspace = {
-					checkThirdParty = false,
-					-- Tells lua_ls where to find all the Lua files that you have loaded
-					-- for your neovim configuration.
-					library = {
-						"${3rd}/luv/library",
-						unpack(vim.api.nvim_get_runtime_file("", true)),
-					},
-					-- If lua_ls is really slow on your computer, you can try this instead:
-					-- library = { vim.env.VIMRUNTIME },
+				completion = {
+					callSnippet = "Replace",
 				},
-				completion = { callSnippet = "Replace" },
+				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
 				diagnostics = { disable = { "missing-fields" } },
 			},
 		},
@@ -49,15 +40,7 @@ local servers = {
 			},
 		},
 	},
-	vtsls = {
-		settings = {
-			vtsls = { autoUseWorkspaceTsdk = true },
-		},
-	},
 	mdx_analyzer = {},
-	prettier = {},
-	eslint = {},
-	stylua = {},
 	rust_analyzer = {},
 }
 
@@ -65,10 +48,8 @@ return {
 	-- LSP Configuration & Plugins
 	{
 		"neovim/nvim-lspconfig",
-		event = { "VeryLazy" },
 		dependencies = {
-			-- Automatically install LSPs to stdpath for neovim
-			"williamboman/mason.nvim",
+			{ "williamboman/mason.nvim", opts = {} },
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
@@ -78,22 +59,34 @@ return {
 				opts = {},
 			},
 
-			-- Additional lua configuration, makes nvim stuff amazing!
 			{
-				"folke/neodev.nvim",
-				opts = {},
+				-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+				-- used for completion, annotations and signatures of Neovim apis
+				"folke/lazydev.nvim",
+				ft = "lua",
+				opts = {
+					library = {
+						-- Load luvit types when the `vim.uv` word is found
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
 			},
 
 			{
-				-- TypeScript language server extras
-				"yioneko/nvim-vtsls",
+				-- Allows extra capabilities provided by blink.cmp
+				"saghen/blink.cmp",
+			},
+
+			{
+				-- Some languages (like typescript) have entire language plugins that can be useful:
+				"https://github.com/pmizio/typescript-tools.nvim",
+				opts = {},
 			},
 		},
 	},
 
 	{
 		"williamboman/mason-lspconfig.nvim",
-		event = { "VeryLazy" },
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
 			--  This function gets run when an LSP attaches to a particular buffer.
@@ -114,34 +107,76 @@ return {
 								desc = "Find workspace symbols",
 							},
 
-							{ "<leader>c", group = "Code" },
-							{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
-							{ "<leader>ca", vim.lsp.buf.code_action, desc = "Code actions" },
-							{ "<leader>cv", "<cmd>VtsExec source_actions<cr>", desc = "Code actions (vtsls)" },
-
-							{ "<leader>g", group = "Goto" },
-							{ "<leader>gd", builtin.lsp_definitions, desc = "Go to definition" },
-							{ "<leader>gr", builtin.lsp_references, desc = "Go to references" },
-							{ "<leader>gi", builtin.lsp_implementations, desc = "Go to implementation" },
-							{ "<leader>gt", builtin.lsp_type_definitions, desc = "Go to type definition" },
+							{ "<leader>gr", group = "Goto" },
+							{ "<leader>grn", vim.lsp.buf.rename, desc = "Rename" },
+							{
+								mode = { "n", "x" },
+								{ "<leader>gra", vim.lsp.buf.code_action, desc = "Code actions" },
+							},
+							{ "<leader>grv", "<cmd>VtsExec source_actions<cr>", desc = "Code actions (vtsls)" },
+							{ "<leader>grr", builtin.lsp_references, desc = "Go to references" },
+							{ "<leader>gri", builtin.lsp_implementations, desc = "Go to implementation" },
+							{ "<leader>grd", builtin.lsp_definitions, desc = "Go to definition" },
+							{ "<leader>grt", builtin.lsp_type_definitions, desc = "Go to type definition" },
 						},
 					})
 				end,
 			})
 
+			-- Diagnostic Config
+			-- See :help vim.diagnostic.Opts
+			vim.diagnostic.config({
+				severity_sort = true,
+				float = { border = "rounded", source = "if_many" },
+				underline = { severity = vim.diagnostic.severity.ERROR },
+				signs = vim.g.have_nerd_font and {
+					text = {
+						[vim.diagnostic.severity.ERROR] = "󰅚 ",
+						[vim.diagnostic.severity.WARN] = "󰀪 ",
+						[vim.diagnostic.severity.INFO] = "󰋽 ",
+						[vim.diagnostic.severity.HINT] = "󰌶 ",
+					},
+				} or {},
+				virtual_text = {
+					source = "if_many",
+					spacing = 2,
+					format = function(diagnostic)
+						local diagnostic_message = {
+							[vim.diagnostic.severity.ERROR] = diagnostic.message,
+							[vim.diagnostic.severity.WARN] = diagnostic.message,
+							[vim.diagnostic.severity.INFO] = diagnostic.message,
+							[vim.diagnostic.severity.HINT] = diagnostic.message,
+						}
+						return diagnostic_message[diagnostic.severity]
+					end,
+				},
+			})
+
 			-- blink.cmp supports additional completion capabilities, so broadcast that to servers
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			require("mason").setup()
+			local ensure_installed = vim.tbl_keys(servers or {})
+
+			vim.list_extend(ensure_installed, {
+				"prettier",
+				"eslint",
+				"stylua",
+			})
+
 			require("mason-tool-installer").setup({
-				ensure_installed = vim.tbl_keys(servers),
+				ensure_installed = ensure_installed,
 			})
 
 			require("mason-lspconfig").setup({
+				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+				automatic_enable = true,
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", capabilities, server.capabilities or {})
+						-- This handles overriding only values explicitly passed
+						-- by the server configuration above. Useful when disabling
+						-- certain features of an LSP (for example, turning off formatting for ts_ls)
+						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
 					end,
 				},
