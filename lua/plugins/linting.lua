@@ -3,7 +3,6 @@
 
 return {
 	"mfussenegger/nvim-lint",
-	event = { "BufReadPost", "BufWritePost", "InsertLeave", "TextChanged" },
 	config = function()
 		require("lint").linters_by_ft = {
 			javascript = { "eslint" },
@@ -20,7 +19,7 @@ return {
 				local eslint_config_exists = vim.fn.glob(vim.fn.getcwd() .. "/eslint.config.*")
 
 				if eslint_config_exists ~= "" then
-					vim.cmd("EslintFixAll")
+					vim.cmd("LspEslintFixAll")
 				end
 			end,
 		})

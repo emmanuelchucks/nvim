@@ -95,12 +95,10 @@ return {
 	{
 		"tpope/vim-fugitive",
 		dependencies = { "tpope/vim-rhubarb" },
-		event = { "VeryLazy" },
 	},
 
 	{
 		"lewis6991/gitsigns.nvim",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
 		opts = {
 			on_attach = on_attach,
 			signs_staged_enable = false,

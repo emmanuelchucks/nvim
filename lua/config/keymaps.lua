@@ -3,7 +3,7 @@
 
 return {
 	"folke/which-key.nvim",
-	event = { "VeryLazy" },
+	event = "VimEnter",
 	config = function()
 		local wk = require("which-key")
 		local extras = require("which-key.extras")

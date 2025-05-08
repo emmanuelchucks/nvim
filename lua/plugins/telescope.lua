@@ -55,7 +55,7 @@ end
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
-	event = { "VeryLazy" },
+	event = "VimEnter",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",

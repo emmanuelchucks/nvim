@@ -47,11 +47,16 @@ return {
 
 	{
 		"folke/todo-comments.nvim",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-		dependencies = { "nvim-lua/plenary.nvim" },
+		event = "VimEnter",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
 		config = function()
 			local todo = require("todo-comments")
-			todo.setup({ signs = false })
+
+			todo.setup({
+				signs = false,
+			})
 
 			require("which-key").add({
 				{ "<leader>f", group = "Find" },

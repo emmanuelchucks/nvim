@@ -1,5 +1,7 @@
--- Sync clipboard between OS and Neovim
-vim.o.clipboard = "unnamedplus"
+-- Sync clipboard between OS and Neovim.
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
 
 -- Set highlight on search
 vim.o.hlsearch = false
