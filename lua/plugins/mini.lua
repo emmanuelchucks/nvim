@@ -12,7 +12,7 @@ return {
 		require("mini.surround").setup()
 		require("mini.operators").setup()
 		require("mini.pairs").setup()
-		require("mini.files").setup()
+		require("mini.icons").setup()
 		require("mini.misc").setup_restore_cursor()
 
 		local spec_treesitter = require("mini.ai").gen_spec.treesitter

@@ -9,9 +9,6 @@ return {
 		local extras = require("which-key.extras")
 
 		wk.setup({
-			icons = {
-				mappings = false,
-			},
 			spec = {
 				{ "<space>", "<nop>", mode = { "n", "v" } },
 				{ "<leader>w", proxy = "<c-w>", group = "Windows" },
