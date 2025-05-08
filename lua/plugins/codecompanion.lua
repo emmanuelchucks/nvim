@@ -6,10 +6,12 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
+
 		{
 			"MeanderingProgrammer/render-markdown.nvim",
 			ft = { "codecompanion" },
 		},
+
 		{
 			"ravitemer/mcphub.nvim",
 			build = "bundled_build.lua",
@@ -26,8 +28,14 @@ return {
 			extensions = {
 				mcphub = {
 					callback = "mcphub.extensions.codecompanion",
+					opts = {
+						make_vars = true,
+						make_slash_commands = true,
+						show_result_in_chat = true,
+					},
 				},
 			},
+
 			adapters = {
 				gemini = function()
 					return require("codecompanion.adapters").extend("gemini", {
@@ -39,10 +47,12 @@ return {
 					})
 				end,
 			},
+
 			strategies = {
 				chat = {
 					adapter = "gemini",
 				},
+
 				inline = {
 					adapter = "gemini",
 				},
@@ -51,6 +61,7 @@ return {
 
 		require("which-key").add({
 			{ "<leader>cc", group = "CodeCompanion" },
+
 			{
 				mode = { "n", "v" },
 				{
@@ -59,6 +70,7 @@ return {
 					desc = "CodeCompanion: chat",
 				},
 			},
+
 			{
 				mode = { "n", "v" },
 				{
@@ -67,6 +79,7 @@ return {
 					desc = "CodeCompanion: inline",
 				},
 			},
+
 			{
 				mode = { "n", "v" },
 				{
@@ -75,6 +88,7 @@ return {
 					desc = "CodeCompanion: actions",
 				},
 			},
+
 			{
 				mode = { "n", "v" },
 				{
@@ -83,6 +97,7 @@ return {
 					desc = "CodeCompanion: toggle",
 				},
 			},
+
 			{
 				mode = { "v" },
 				{
