@@ -22,4 +22,11 @@ return {
 		main = "ibl",
 		opts = {},
 	},
+
+	{
+		-- Edit your filesystem like a buffer
+		"stevearc/oil.nvim",
+		lazy = false,
+		opts = {},
+	},
 }
