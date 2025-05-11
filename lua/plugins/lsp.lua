@@ -107,17 +107,15 @@ return {
 								desc = "Find workspace symbols",
 							},
 
-							{ "<leader>gr", group = "Goto" },
-							{ "<leader>grn", vim.lsp.buf.rename, desc = "Rename" },
+							{ "<leader>g", group = "Goto" },
+							{ "<leader>gr", vim.lsp.buf.rename, desc = "Rename" },
 							{
 								mode = { "n", "x" },
-								{ "<leader>gra", vim.lsp.buf.code_action, desc = "Code actions" },
+								{ "<leader>ga", vim.lsp.buf.code_action, desc = "Code actions" },
 							},
-							{ "<leader>grv", "<cmd>VtsExec source_actions<cr>", desc = "Code actions (vtsls)" },
-							{ "<leader>grr", builtin.lsp_references, desc = "Go to references" },
-							{ "<leader>gri", builtin.lsp_implementations, desc = "Go to implementation" },
-							{ "<leader>grd", builtin.lsp_definitions, desc = "Go to definition" },
-							{ "<leader>grt", builtin.lsp_type_definitions, desc = "Go to type definition" },
+							{ "<leader>gi", builtin.lsp_implementations, desc = "Go to implementation" },
+							{ "<leader>gd", builtin.lsp_definitions, desc = "Go to definition" },
+							{ "<leader>gt", builtin.lsp_type_definitions, desc = "Go to type definition" },
 						},
 					})
 				end,

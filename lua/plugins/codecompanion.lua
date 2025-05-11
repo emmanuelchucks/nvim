@@ -60,51 +60,31 @@ return {
 		})
 
 		require("which-key").add({
-			{ "<leader>cc", group = "CodeCompanion" },
+			{ "<leader>c", group = "CodeCompanion" },
 
 			{
 				mode = { "n", "v" },
-				{
-					"<leader>ccc",
-					"<cmd>CodeCompanionChat<cr>",
-					desc = "CodeCompanion: chat",
-				},
+				{ "<leader>cc", "<cmd>CodeCompanionChat<cr>", desc = "CodeCompanion: chat" },
 			},
 
 			{
 				mode = { "n", "v" },
-				{
-					"<leader>cci",
-					"<cmd>CodeCompanion<cr>",
-					desc = "CodeCompanion: inline",
-				},
+				{ "<leader>ci", "<cmd>CodeCompanion<cr>", desc = "CodeCompanion: inline" },
 			},
 
 			{
 				mode = { "n", "v" },
-				{
-					"<leader>cca",
-					"<cmd>CodeCompanionActions<cr>",
-					desc = "CodeCompanion: actions",
-				},
+				{ "<leader>ca", "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion: actions" },
 			},
 
 			{
 				mode = { "n", "v" },
-				{
-					"<leader>cct",
-					"<cmd>CodeCompanionChat Toggle<cr>",
-					desc = "CodeCompanion: toggle",
-				},
+				{ "<leader>ct", "<cmd>CodeCompanionChat Toggle<cr>", desc = "CodeCompanion: toggle" },
 			},
 
 			{
 				mode = { "v" },
-				{
-					"ga",
-					"<cmd>CodeCompanionChat Add<cr>",
-					desc = "CodeCompanion: add",
-				},
+				{ "ga", "<cmd>CodeCompanionChat Add<cr>", desc = "CodeCompanion: add" },
 			},
 		})
 	end,
