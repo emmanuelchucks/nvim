@@ -35,6 +35,15 @@ return {
 			},
 
 			adapters = {
+				anthropic = function()
+					return require("codecompanion.adapters").extend("anthropic", {
+						schema = {
+							model = {
+								default = "claude-sonnet-4-20250514",
+							},
+						},
+					})
+				end,
 				gemini = function()
 					return require("codecompanion.adapters").extend("gemini", {
 						schema = {
