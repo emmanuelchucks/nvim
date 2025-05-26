@@ -9,12 +9,14 @@ local on_attach = function(bufnr)
 	wk.add({
 		{
 			buffer = bufnr,
+
 			{
 				"ih",
-				":<c-u>Gitsigns select_hunk<cr>",
+				":<C-u>Gitsigns select_hunk<cr>",
 				desc = "Inner hunk",
 				mode = { "o", "x" },
 			},
+
 			{
 				"]h",
 				function()
@@ -28,6 +30,7 @@ local on_attach = function(bufnr)
 				end,
 				desc = "Next hunk",
 			},
+
 			{
 				"[h",
 				function()
