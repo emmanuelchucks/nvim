@@ -84,14 +84,7 @@ return {
 				"buffer",
 				"ripgrep",
 				"git",
-			},
-
-			per_filetype = {
-				sql = {
-					"snippets",
-					"dadbod",
-					"buffer",
-				},
+				"dadbod",
 			},
 
 			providers = {
@@ -104,6 +97,9 @@ return {
 				dadbod = {
 					module = "vim_dadbod_completion.blink",
 					name = "Dadbod",
+					enabled = function()
+						return vim.tbl_contains({ "snippets", "dadbod", "buffer" }, vim.bo.filetype)
+					end,
 				},
 
 				git = {
