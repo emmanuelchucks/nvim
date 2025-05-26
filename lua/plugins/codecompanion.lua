@@ -35,24 +35,6 @@ return {
 			},
 
 			adapters = {
-				anthropic = function()
-					return require("codecompanion.adapters").extend("anthropic", {
-						schema = {
-							model = {
-								default = "claude-sonnet-4-20250514",
-							},
-						},
-					})
-				end,
-				gemini = function()
-					return require("codecompanion.adapters").extend("gemini", {
-						schema = {
-							model = {
-								default = "gemini-2.5-pro-preview-05-06",
-							},
-						},
-					})
-				end,
 				openrouter = function()
 					return require("codecompanion.adapters").extend("openai_compatible", {
 						env = {
