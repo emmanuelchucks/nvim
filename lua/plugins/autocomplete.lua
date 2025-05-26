@@ -65,6 +65,17 @@ return {
 			},
 		},
 
+		cmdline = {
+			keymap = {
+				["<Tab>"] = { "show", "accept" },
+			},
+			completion = {
+				menu = {
+					auto_show = true,
+				},
+			},
+		},
+
 		sources = {
 			default = {
 				"lsp",
