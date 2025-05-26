@@ -57,6 +57,14 @@ return {
 			implementation = "prefer_rust_with_warning",
 		},
 
+		completion = {
+			accept = {
+				auto_brackets = {
+					enabled = false,
+				},
+			},
+		},
+
 		sources = {
 			default = {
 				"lsp",
