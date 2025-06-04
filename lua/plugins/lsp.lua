@@ -1,57 +1,6 @@
 -- lsp.lua
 --
 
-local servers = {
-	jsonls = {
-		settings = {
-			json = {
-				schemas = require("schemastore").json.schemas(),
-				validate = { enable = true },
-			},
-		},
-	},
-	yamlls = {
-		settings = {
-			yaml = {
-				schemas = require("schemastore").yaml.schemas(),
-				validate = { enable = true },
-			},
-		},
-	},
-	lua_ls = {
-		settings = {
-			Lua = {
-				completion = {
-					callSnippet = "Replace",
-				},
-				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-				diagnostics = { disable = { "missing-fields" } },
-			},
-		},
-	},
-	tailwindcss = {
-		settings = {
-			tailwindCSS = {
-				experimental = {
-					classRegex = {
-						{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-						{ "\\b\\w+[cC]lassName\\s*=\\s*[\"']([^\"']*)[\"']" },
-						{ "\\b\\w+[cC]lassName\\s*=\\s*`([^`]*)`" },
-						{ "[\\w]+[cC]lassName[\"']?\\s*:\\s*[\"']([^\"']*)[\"']" },
-						{ "[\\w]+[cC]lassName[\"']?\\s*:\\s*`([^`]*)`" },
-					},
-				},
-			},
-		},
-	},
-	vtsls = {
-		settings = {
-			vtsls = { autoUseWorkspaceTsdk = true },
-		},
-	},
-	mdx_analyzer = {},
-}
-
 return {
 	-- LSP Configuration & Plugins
 	{
@@ -90,6 +39,57 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
+			local servers = {
+				jsonls = {
+					settings = {
+						json = {
+							schemas = require("schemastore").json.schemas(),
+							validate = { enable = true },
+						},
+					},
+				},
+				yamlls = {
+					settings = {
+						yaml = {
+							schemas = require("schemastore").yaml.schemas(),
+							validate = { enable = true },
+						},
+					},
+				},
+				lua_ls = {
+					settings = {
+						Lua = {
+							completion = {
+								callSnippet = "Replace",
+							},
+							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+							diagnostics = { disable = { "missing-fields" } },
+						},
+					},
+				},
+				tailwindcss = {
+					settings = {
+						tailwindCSS = {
+							experimental = {
+								classRegex = {
+									{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+									{ "\\b\\w+[cC]lassName\\s*=\\s*[\"']([^\"']*)[\"']" },
+									{ "\\b\\w+[cC]lassName\\s*=\\s*`([^`]*)`" },
+									{ "[\\w]+[cC]lassName[\"']?\\s*:\\s*[\"']([^\"']*)[\"']" },
+									{ "[\\w]+[cC]lassName[\"']?\\s*:\\s*`([^`]*)`" },
+								},
+							},
+						},
+					},
+				},
+				vtsls = {
+					settings = {
+						vtsls = { autoUseWorkspaceTsdk = true },
+					},
+				},
+				mdx_analyzer = {},
+			}
+
 			--  This function gets run when an LSP attaches to a particular buffer.
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -122,9 +122,6 @@ return {
 				end,
 			})
 
-			-- blink.cmp supports additional completion capabilities, so broadcast that to servers
-			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
 			local ensure_installed = vim.tbl_keys(servers or {})
 
 			vim.list_extend(ensure_installed, {
@@ -138,19 +135,12 @@ return {
 			})
 
 			require("mason-lspconfig").setup({
-				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-				automatic_enable = true,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for ts_ls)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
+				automatic_enable = vim.tbl_keys(servers or {}),
 			})
+
+			for server_name, config in pairs(servers) do
+				vim.lsp.config(server_name, config)
+			end
 		end,
 	},
 }
