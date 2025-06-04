@@ -28,6 +28,7 @@ return {
 					"markdown",
 					"markdown_inline",
 					"query",
+					"regex",
 					"rust",
 					"tsx",
 					"typescript",
