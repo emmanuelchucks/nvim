@@ -43,7 +43,17 @@ return {
 				jsonls = {
 					settings = {
 						json = {
-							schemas = require("schemastore").json.schemas(),
+							schemas = require("schemastore").json.schemas({
+								replace = {
+									["Wrangler CLI"] = vim.tbl_deep_extend(
+										"force",
+										vim.tbl_filter(function(s)
+											return s.name == "Wrangler CLI"
+										end, require("schemastore").json.schemas())[1] or {},
+										{ fileMatch = { "wrangler.json", "wrangler.jsonc", "wrangler.toml" } }
+									),
+								},
+							}),
 							validate = { enable = true },
 						},
 					},
