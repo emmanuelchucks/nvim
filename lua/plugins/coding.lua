@@ -34,12 +34,25 @@ return {
 	},
 
 	{
+		"supermaven-inc/supermaven-nvim",
+		opts = {
+			log_level = "off",
+			ignore_filetypes = {
+				"markdown",
+				"help",
+				"text",
+			},
+		},
+	},
+
+	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
 				suggestion = {
+					enabled = false,
 					auto_trigger = true,
 					keymap = {
 						accept = "<Tab>",
