@@ -98,7 +98,7 @@ return {
 					module = "vim_dadbod_completion.blink",
 					name = "Dadbod",
 					enabled = function()
-						return vim.tbl_contains({ "snippets", "dadbod", "buffer" }, vim.bo.filetype)
+						return vim.tbl_contains({ "sql" }, vim.bo.filetype)
 					end,
 				},
 
