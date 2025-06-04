@@ -19,7 +19,6 @@ return {
 			mdx = { "prettier" },
 			yaml = { "prettier" },
 			lua = { "stylua" },
-			rust = { "rustfmt" },
 		},
 		notify_on_error = false,
 		format_on_save = {

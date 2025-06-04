@@ -50,7 +50,6 @@ local servers = {
 		},
 	},
 	mdx_analyzer = {},
-	rust_analyzer = {},
 }
 
 return {
