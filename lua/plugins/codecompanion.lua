@@ -50,17 +50,6 @@ return {
 					})
 				end,
 			},
-
-			strategies = {
-				chat = {
-					tools = {
-						opts = {
-							auto_submit_errors = true,
-							auto_submit_success = true,
-						},
-					},
-				},
-			},
 		})
 
 		require("which-key").add({
