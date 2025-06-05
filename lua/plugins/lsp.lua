@@ -98,6 +98,7 @@ return {
 					},
 				},
 				mdx_analyzer = {},
+				eslint = {},
 			}
 
 			--  This function gets run when an LSP attaches to a particular buffer.
