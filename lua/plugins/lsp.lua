@@ -80,15 +80,8 @@ return {
 				tailwindcss = {
 					settings = {
 						tailwindCSS = {
-							experimental = {
-								classRegex = {
-									{ "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-									{ "\\b\\w+[cC]lassName\\s*=\\s*[\"']([^\"']*)[\"']" },
-									{ "\\b\\w+[cC]lassName\\s*=\\s*`([^`]*)`" },
-									{ "[\\w]+[cC]lassName[\"']?\\s*:\\s*[\"']([^\"']*)[\"']" },
-									{ "[\\w]+[cC]lassName[\"']?\\s*:\\s*`([^`]*)`" },
-								},
-							},
+							classAttributes = { "class", "className", "[a-z]*ClassName" },
+							classFunctions = { "cva", "cx", "clsx" },
 						},
 					},
 				},
