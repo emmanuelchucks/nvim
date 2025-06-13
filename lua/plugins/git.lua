@@ -20,13 +20,11 @@ local on_attach = function(bufnr)
 			{
 				"]h",
 				function()
-					if vim.wo.diff then
-						return "]h"
+					if not vim.wo.diff then
+						vim.schedule(function()
+							gitsigns.next_hunk()
+						end)
 					end
-					vim.schedule(function()
-						gitsigns.next_hunk()
-					end)
-					return "<Ignore>"
 				end,
 				desc = "Next hunk",
 			},
@@ -34,13 +32,11 @@ local on_attach = function(bufnr)
 			{
 				"[h",
 				function()
-					if vim.wo.diff then
-						return "[h"
+					if not vim.wo.diff then
+						vim.schedule(function()
+							gitsigns.prev_hunk()
+						end)
 					end
-					vim.schedule(function()
-						gitsigns.prev_hunk()
-					end)
-					return "<Ignore>"
 				end,
 				desc = "Previous hunk",
 			},
