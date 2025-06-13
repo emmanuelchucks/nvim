@@ -16,7 +16,7 @@ return {
 				{ "<leader>e", vim.diagnostic.open_float, desc = "Open floating diagnostic message" },
 			},
 			triggers = {
-				{ "<auto>", mode = "nixsotc" },
+				{ "<auto>", mode = "nixsoc" },
 				{ "s", mode = { "n", "v" } },
 				{ "t", mode = { "n", "v" } },
 			},

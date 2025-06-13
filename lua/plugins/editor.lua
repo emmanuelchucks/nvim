@@ -21,6 +21,7 @@ return {
 	},
 
 	{
+		-- Better vim.notify
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		dependencies = {
@@ -49,5 +50,24 @@ return {
 		"stevearc/oil.nvim",
 		lazy = false,
 		opts = {},
+	},
+
+	{
+		-- Make terminals in neovim fun to use
+		"akinsho/toggleterm.nvim",
+		config = function()
+			local wk = require("which-key")
+
+			require("toggleterm").setup({})
+
+			wk.add({
+				{ "<leader>t", group = "Terminal" },
+				{ "<leader>tt", "<cmd>ToggleTerm 1<cr>", desc = "Toggle terminal" },
+				{ "<leader>tn", "<cmd>ToggleTerm 2 direction=float<cr>", desc = "Toggle floating terminal" },
+				{ "<leader>ts", "<cmd>TermSelect<cr>", desc = "Select terminal" },
+
+				{ "<esc><esc>", "<C-\\><C-n>", mode = "t", desc = "Exit terminal mode" },
+			})
+		end,
 	},
 }
