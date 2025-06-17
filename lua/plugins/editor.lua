@@ -62,8 +62,13 @@ return {
 
 			wk.add({
 				{ "<leader>t", group = "Terminal" },
-				{ "<leader>tt", "<cmd>ToggleTerm 1<cr>", desc = "Toggle terminal" },
-				{ "<leader>tn", "<cmd>ToggleTerm 2 direction=float<cr>", desc = "Toggle floating terminal" },
+				{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
+				{ "<leader>tn", "<cmd>TermNew<cr>", desc = "Toggle new terminal" },
+				{
+					"<leader>tf",
+					"<cmd>ToggleTerm 999 name='Claude Code' direction=float<cr>",
+					desc = "Toggle floating terminal",
+				},
 				{ "<leader>ts", "<cmd>TermSelect<cr>", desc = "Select terminal" },
 
 				{ "<esc><esc>", "<C-\\><C-n>", mode = "t", desc = "Exit terminal mode" },
