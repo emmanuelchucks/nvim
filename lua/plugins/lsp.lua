@@ -1,6 +1,58 @@
 -- lsp.lua
 --
 
+local servers = {
+	jsonls = {
+		settings = {
+			json = {
+				schemas = require("schemastore").json.schemas({
+					replace = {
+						["Wrangler CLI"] = vim.tbl_deep_extend("force", vim.tbl_filter(function(s)
+							return s.name == "Wrangler CLI"
+						end, require("schemastore").json.schemas())[1] or {}, {
+							fileMatch = { "wrangler.jsonc" },
+						}),
+					},
+				}),
+				validate = { enable = true },
+			},
+		},
+	},
+	yamlls = {
+		settings = {
+			yaml = {
+				schemas = require("schemastore").yaml.schemas(),
+				validate = { enable = true },
+			},
+		},
+	},
+	lua_ls = {
+		settings = {
+			Lua = {
+				completion = {
+					callSnippet = "Replace",
+				},
+				-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+				diagnostics = { disable = { "missing-fields" } },
+			},
+		},
+	},
+	tailwindcss = {
+		settings = {
+			tailwindCSS = {
+				classAttributes = { "class", "className", "[a-z]*ClassName" },
+			},
+		},
+	},
+	vtsls = {
+		settings = {
+			vtsls = { autoUseWorkspaceTsdk = true },
+		},
+	},
+	mdx_analyzer = {},
+	eslint = {},
+}
+
 return {
 	-- LSP Configuration & Plugins
 	{
@@ -39,61 +91,6 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "williamboman/mason.nvim" },
 		config = function()
-			local servers = {
-				jsonls = {
-					settings = {
-						json = {
-							schemas = require("schemastore").json.schemas({
-								replace = {
-									["Wrangler CLI"] = vim.tbl_deep_extend(
-										"force",
-										vim.tbl_filter(function(s)
-											return s.name == "Wrangler CLI"
-										end, require("schemastore").json.schemas())[1] or {},
-										{ fileMatch = { "wrangler.json", "wrangler.jsonc", "wrangler.toml" } }
-									),
-								},
-							}),
-							validate = { enable = true },
-						},
-					},
-				},
-				yamlls = {
-					settings = {
-						yaml = {
-							schemas = require("schemastore").yaml.schemas(),
-							validate = { enable = true },
-						},
-					},
-				},
-				lua_ls = {
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							diagnostics = { disable = { "missing-fields" } },
-						},
-					},
-				},
-				tailwindcss = {
-					settings = {
-						tailwindCSS = {
-							classAttributes = { "class", "className", "[a-z]*ClassName" },
-							classFunctions = { "cva", "cx", "clsx" },
-						},
-					},
-				},
-				vtsls = {
-					settings = {
-						vtsls = { autoUseWorkspaceTsdk = true },
-					},
-				},
-				mdx_analyzer = {},
-				eslint = {},
-			}
-
 			--  This function gets run when an LSP attaches to a particular buffer.
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -129,7 +126,7 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 
 			vim.list_extend(ensure_installed, {
-				"prettier",
+				"prettierd",
 				"eslint",
 				"stylua",
 			})

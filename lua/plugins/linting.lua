@@ -12,7 +12,7 @@ return {
 			css = { "eslint" },
 		}
 
-		vim.api.nvim_create_autocmd("BufWritePre", {
+		vim.api.nvim_create_autocmd("BufWritePost", {
 			group = vim.api.nvim_create_augroup("eslint-fix-on-save", { clear = true }),
 			pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
 			callback = function()
