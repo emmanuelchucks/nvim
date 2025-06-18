@@ -64,11 +64,7 @@ return {
 				{ "<leader>t", group = "Terminal" },
 				{ "<leader>tt", "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" },
 				{ "<leader>tn", "<cmd>TermNew<cr>", desc = "Toggle new terminal" },
-				{
-					"<leader>tf",
-					"<cmd>ToggleTerm 999 name='Claude Code' direction=float<cr>",
-					desc = "Toggle floating terminal",
-				},
+				{ "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
 				{ "<leader>ts", "<cmd>TermSelect<cr>", desc = "Select terminal" },
 
 				{ "<esc><esc>", "<C-\\><C-n>", mode = "t", desc = "Exit terminal mode" },
