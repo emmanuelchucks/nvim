@@ -40,7 +40,7 @@ local servers = {
 	tailwindcss = {
 		settings = {
 			tailwindCSS = {
-				classAttributes = { "class", "className", "[a-z]*ClassName" },
+				classAttributes = { "class", "className", ".*ClassName" },
 			},
 		},
 	},
