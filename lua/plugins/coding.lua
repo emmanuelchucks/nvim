@@ -46,30 +46,6 @@ return {
 	},
 
 	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				suggestion = {
-					enabled = false,
-					auto_trigger = true,
-					keymap = {
-						accept = "<Tab>",
-						accept_word = "<C-l>",
-						accept_line = "<C-j>",
-					},
-				},
-				filetypes = {
-					yaml = true,
-					gitcommit = true,
-					gitrebase = true,
-				},
-			})
-		end,
-	},
-
-	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
 		dependencies = {
