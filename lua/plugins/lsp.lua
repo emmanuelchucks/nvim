@@ -44,13 +44,8 @@ local servers = {
 			},
 		},
 	},
-	vtsls = {
-		settings = {
-			vtsls = { autoUseWorkspaceTsdk = true },
-		},
-	},
+	tsgo = {},
 	mdx_analyzer = {},
-	eslint = {},
 }
 
 return {
@@ -78,11 +73,6 @@ return {
 			{
 				-- Allows extra capabilities provided by blink.cmp
 				"saghen/blink.cmp",
-			},
-
-			{
-				-- TypeScript language server extras
-				"yioneko/nvim-vtsls",
 			},
 		},
 	},
@@ -123,11 +113,14 @@ return {
 				end,
 			})
 
-			local ensure_installed = vim.tbl_keys(servers or {})
+			local ensure_installed = vim.tbl_filter(function(name)
+				vim.lsp.enable("tsgo")
+				return name ~= "tsgo"
+			end, vim.tbl_keys(servers or {}))
 
 			vim.list_extend(ensure_installed, {
 				"prettierd",
-				"eslint",
+				"eslint_d",
 				"stylua",
 			})
 
