@@ -5,18 +5,26 @@ return {
 	"mfussenegger/nvim-lint",
 	config = function()
 		require("lint").linters_by_ft = {
-			javascript = { "eslint_d" },
-			javascriptreact = { "eslint_d" },
-			typescript = { "eslint_d" },
-			typescriptreact = { "eslint_d" },
-			css = { "eslint_d" },
+			javascript = { "eslint" },
+			javascriptreact = { "eslint" },
+			typescript = { "eslint" },
+			typescriptreact = { "eslint" },
+			json = { "eslint" },
+			jsonc = { "eslint" },
+			markdown = { "eslint" },
+			html = { "eslint" },
+			css = { "eslint" },
+			mdx = { "eslint" },
+			yaml = { "eslint" },
 		}
 
-		vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged", "BufWritePost" }, {
-			group = vim.api.nvim_create_augroup("lint", { clear = true }),
-			pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
+		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+			group = vim.api.nvim_create_augroup("fix-on-save", { clear = true }),
 			callback = function()
-				require("lint").try_lint()
+				local clients = vim.lsp.get_clients({ bufnr = 0, name = "eslint" })
+				if #clients > 0 then
+					vim.cmd("LspEslintFixAll")
+				end
 			end,
 		})
 	end,
