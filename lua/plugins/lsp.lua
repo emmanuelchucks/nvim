@@ -40,13 +40,9 @@ local servers = {
 	tailwindcss = {
 		settings = {
 			tailwindCSS = {
-				classAttributes = { "class", "className", ".*ClassName" },
+				classAttributes = { ".*ClassName" },
+				classFunctions = { "tv" },
 			},
-		},
-	},
-	vtsls = {
-		settings = {
-			autoUseWorkspaceTsdk = true,
 		},
 	},
 	eslint = {},
@@ -137,6 +133,22 @@ return {
 			for server_name, config in pairs(servers) do
 				vim.lsp.config(server_name, config)
 			end
+
+			vim.lsp.config("ts_go_ls", {
+				cmd = { "pnpm", "tsgo", "--lsp", "-stdio" },
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+				},
+
+				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+			})
+
+			vim.lsp.enable("ts_go_ls")
 		end,
 	},
 }

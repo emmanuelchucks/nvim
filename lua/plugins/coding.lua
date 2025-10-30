@@ -34,18 +34,6 @@ return {
 	},
 
 	{
-		"supermaven-inc/supermaven-nvim",
-		opts = {
-			log_level = "off",
-			ignore_filetypes = {
-				"markdown",
-				"help",
-				"text",
-			},
-		},
-	},
-
-	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
 		dependencies = {

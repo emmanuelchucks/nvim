@@ -6,14 +6,16 @@ return {
 	event = "VimEnter",
 	version = "1.*",
 	dependencies = {
-		"Kaiser-Yang/blink-cmp-git",
 		"mikavilpas/blink-ripgrep.nvim",
 		"rafamadriz/friendly-snippets",
 		"folke/lazydev.nvim",
 		{
 			"kristijanhusak/vim-dadbod-completion",
 			ft = { "sql", "mysql", "plsql" },
-			lazy = true,
+		},
+		{
+			"Kaiser-Yang/blink-cmp-git",
+			ft = { "octo", "gitcommit" },
 		},
 	},
 	---@module 'blink.cmp'
@@ -106,7 +108,7 @@ return {
 					module = "blink-cmp-git",
 					name = "Git",
 					enabled = function()
-						return vim.tbl_contains({ "octo", "gitcommit", "markdown" }, vim.bo.filetype)
+						return vim.tbl_contains({ "octo", "gitcommit" }, vim.bo.filetype)
 					end,
 					opts = {
 						-- options for the blink-cmp-git
@@ -120,7 +122,11 @@ return {
 					-- the options below are optional, some default values are shown
 					---@module "blink-ripgrep"
 					---@type blink-ripgrep.Options
-					opts = {},
+					opts = {
+						backend = {
+							use = "gitgrep-or-ripgrep",
+						},
+					},
 				},
 			},
 		},
