@@ -3,7 +3,7 @@
 
 return {
 	"saghen/blink.cmp",
-	event = "VimEnter",
+	event = "VeryLazy",
 	version = "1.*",
 	dependencies = {
 		"mikavilpas/blink-ripgrep.nvim",
