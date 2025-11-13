@@ -144,8 +144,12 @@ return {
 					"typescriptreact",
 					"typescript.tsx",
 				},
-
-				root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+				root_markers = {
+					"tsconfig.json",
+					"jsconfig.json",
+					"package.json",
+					".git",
+				},
 			})
 
 			vim.lsp.enable("ts_go_ls")
