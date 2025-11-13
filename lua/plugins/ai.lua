@@ -3,20 +3,15 @@
 
 return {
 	{
-		"zbirenbaum/copilot.lua",
-		event = { "InsertEnter" },
-		config = function()
-			require("copilot").setup({
-				suggestion = {
-					auto_trigger = true,
-					keymap = {
-						accept = "<tab>",
-						accept_word = "<c-j>",
-						accept_line = "<c-l>",
-					},
-				},
-			})
-		end,
+		"supermaven-inc/supermaven-nvim",
+		opts = {
+			log_level = "off",
+			ignore_filetypes = {
+				"markdown",
+				"help",
+				"text",
+			},
+		},
 	},
 
 	{
@@ -44,14 +39,14 @@ return {
 			vim.keymap.set({ "n", "x" }, "ga", function()
 				require("opencode").prompt("@this")
 			end, { desc = "Add to opencode" })
-			vim.keymap.set("n", "<C-.>", function()
+			vim.keymap.set({ "n", "t" }, "<C-.>", function()
 				require("opencode").toggle()
 			end, { desc = "Toggle opencode" })
 			vim.keymap.set("n", "<S-C-u>", function()
-				require("opencode").command("messages_half_page_up")
+				require("opencode").command("session.half.page.up")
 			end, { desc = "opencode half page up" })
 			vim.keymap.set("n", "<S-C-d>", function()
-				require("opencode").command("messages_half_page_down")
+				require("opencode").command("session.half.page.down")
 			end, { desc = "opencode half page down" })
 			-- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o".
 			vim.keymap.set("n", "+", "<C-a>", { desc = "Increment", noremap = true })
