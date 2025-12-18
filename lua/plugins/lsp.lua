@@ -5,15 +5,7 @@ local servers = {
 	jsonls = {
 		settings = {
 			json = {
-				schemas = require("schemastore").json.schemas({
-					replace = {
-						["Wrangler CLI"] = vim.tbl_deep_extend("force", vim.tbl_filter(function(s)
-							return s.name == "Wrangler CLI"
-						end, require("schemastore").json.schemas())[1] or {}, {
-							fileMatch = { "wrangler.jsonc" },
-						}),
-					},
-				}),
+				schemas = require("schemastore").json.schemas(),
 				validate = { enable = true },
 			},
 		},
@@ -45,6 +37,7 @@ local servers = {
 			},
 		},
 	},
+	tsgo = {},
 	eslint = {},
 	mdx_analyzer = {},
 }
@@ -133,26 +126,6 @@ return {
 			for server_name, config in pairs(servers) do
 				vim.lsp.config(server_name, config)
 			end
-
-			vim.lsp.config("ts_go_ls", {
-				cmd = { "pnpm", "tsgo", "--lsp", "-stdio" },
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"javascript.jsx",
-					"typescript",
-					"typescriptreact",
-					"typescript.tsx",
-				},
-				root_markers = {
-					"tsconfig.json",
-					"jsconfig.json",
-					"package.json",
-					".git",
-				},
-			})
-
-			vim.lsp.enable("ts_go_ls")
 		end,
 	},
 }
